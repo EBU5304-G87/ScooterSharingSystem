@@ -6,6 +6,9 @@ public class DatabaseTest {
     @Test
     public void testSingleton() {
         Database db = Database.getInstance();
-        assertEquals(db.stations[0].LCD, "This is a message");
+        assertEquals(db.schoolUsers[0].getEmail(), "igaryhe@gmail.com");
+        db.stations[0].setLCD("hahah");
+        db.saveDatabase();
+        assertEquals(db.stations[0].getLCD(), "hahah");
     }
 }

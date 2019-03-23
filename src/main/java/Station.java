@@ -1,4 +1,12 @@
 public class Station {
     public boolean[] slots;
-    public String LCD;
+    private String LCD;
+
+    public String getLCD() {
+        return LCD;
+    }
+
+    public void setLCD(String LCD) {
+        this.LCD = LCD;
+    }
 }
