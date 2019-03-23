@@ -43,4 +43,12 @@ public class SystemController {
         return tempRecords;
     }
 
+    public List<User> getViolatedUsers() {
+        List<User> vUsers = new ArrayList<User>();
+        for (User user:db.users) {
+            if (user.isViolation())
+                vUsers.add(user);
+        }
+        return vUsers;
+    }
 }
