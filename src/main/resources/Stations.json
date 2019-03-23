@@ -1,0 +1,41 @@
+[
+  {
+    "slots": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "LCD": "This is a message"
+  },
+  {
+    "slots": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "LCD": ""
+  },
+  {
+    "slots": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "LCD": ""
+  }
+]
