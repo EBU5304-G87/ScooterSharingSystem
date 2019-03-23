@@ -1,40 +1,136 @@
 [
   {
     "slots": [
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true
+      {
+        "slot": true,
+        "lock": true,
+        "light": false
+      },
+      {
+        "slot": true,
+        "lock": true,
+        "light": false
+      },
+      {
+        "slot": true,
+        "lock": true,
+        "light": false
+      },
+      {
+        "slot": true,
+        "lock": true,
+        "light": false
+      },
+      {
+        "slot": true,
+        "lock": true,
+        "light": false
+      },
+      {
+        "slot": true,
+        "lock": true,
+        "light": false
+      },
+      {
+        "slot": true,
+        "lock": true,
+        "light": false
+      },
+      {
+        "slot": true,
+        "lock": true,
+        "light": false
+      }
     ],
     "LCD": "hahah"
   },
   {
     "slots": [
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true
+      {
+        "slot": true,
+        "lock": true,
+        "light": false
+      },
+      {
+        "slot": true,
+        "lock": true,
+        "light": false
+      },
+      {
+        "slot": true,
+        "lock": true,
+        "light": false
+      },
+      {
+        "slot": true,
+        "lock": true,
+        "light": false
+      },
+      {
+        "slot": true,
+        "lock": true,
+        "light": false
+      },
+      {
+        "slot": true,
+        "lock": true,
+        "light": false
+      },
+      {
+        "slot": true,
+        "lock": true,
+        "light": false
+      },
+      {
+        "slot": true,
+        "lock": true,
+        "light": false
+      }
     ],
     "LCD": ""
   },
   {
     "slots": [
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true
+      {
+        "slot": true,
+        "lock": true,
+        "light": false
+      },
+      {
+        "slot": true,
+        "lock": true,
+        "light": false
+      },
+      {
+        "slot": true,
+        "lock": true,
+        "light": false
+      },
+      {
+        "slot": true,
+        "lock": true,
+        "light": false
+      },
+      {
+        "slot": true,
+        "lock": true,
+        "light": false
+      },
+      {
+        "slot": true,
+        "lock": true,
+        "light": false
+      },
+      {
+        "slot": true,
+        "lock": true,
+        "light": false
+      },
+      {
+        "slot": true,
+        "lock": true,
+        "light": false
+      }
     ],
     "LCD": ""
   }

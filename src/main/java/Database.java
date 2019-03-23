@@ -1,18 +1,21 @@
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Database {
     SchoolUser[] schoolUsers;
-    Station[] stations;
-    User[] users;
-    Record[] records;
+    List<Station> stations;
+    List<User> users;
+    List<Record> records;
     private Gson gsonIn;
     private Gson gsonOut;
 
@@ -37,23 +40,23 @@ public class Database {
         writeRecords();
         writeUsers();
     }
-    public void writeStations() {
+    void writeStations() {
         writeFile("Stations", gsonOut.toJson(stations));
     }
-    public void writeUsers() {
+    void writeUsers() {
         writeFile("Users", gsonOut.toJson(users));
     }
-    public void writeRecords() {
+    void writeRecords() {
         writeFile("Records", gsonOut.toJson(records));
     }
     private void readStations() throws IOException {
-        stations = gsonIn.fromJson(readFile("Stations"), Station[].class);
+        stations = gsonIn.fromJson(readFile("Stations"), new TypeToken<ArrayList<Station>>(){}.getType());
     }
     private void readUsers() throws IOException {
-        users = gsonIn.fromJson(readFile("Users"), User[].class);
+        users = gsonIn.fromJson(readFile("Users"), new TypeToken<ArrayList<User>>(){}.getType());
     }
     private void readRecords() throws IOException {
-        records = gsonIn.fromJson(readFile("Records"), Record[].class);
+        records = gsonIn.fromJson(readFile("Records"), new TypeToken<ArrayList<Record>>(){}.getType());
     }
 
     private void readSchoolUsers() throws IOException {

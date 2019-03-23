@@ -7,8 +7,8 @@ public class DatabaseTest {
     public void testSingleton() {
         Database db = Database.getInstance();
         assertEquals(db.schoolUsers[0].getEmail(), "igaryhe@gmail.com");
-        db.stations[0].setLCD("hahah");
+        db.stations.get(0).setLCD("hahah");
         db.saveDatabase();
-        assertEquals(db.stations[0].getLCD(), "hahah");
+        assertEquals(db.stations.get(0).getLCD(), "hahah");
     }
 }

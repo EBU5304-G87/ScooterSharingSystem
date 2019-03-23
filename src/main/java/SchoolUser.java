@@ -23,4 +23,8 @@ public class SchoolUser {
     public String getEmail() {
         return email;
     }
+
+    public User getUser() {
+        return new User(id, name, email);
+    }
 }

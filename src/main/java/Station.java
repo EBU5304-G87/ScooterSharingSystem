@@ -1,5 +1,5 @@
 public class Station {
-    public boolean[] slots;
+    public Slot[] slots;
     private String LCD;
 
     public String getLCD() {
