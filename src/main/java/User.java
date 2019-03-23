@@ -1,6 +1,11 @@
 public class User extends SchoolUser {
     private boolean violation;
 
+    public User() {
+        id = 0;
+        name = "";
+        email = "";
+    }
     public User(int id, String name, String email) {
         super(id, name, email);
         this.violation = false;

@@ -1,7 +1,7 @@
 public class SchoolUser {
-    private int id;
-    private String name;
-    private String email;
+    protected int id;
+    protected String name;
+    protected String email;
 
     public SchoolUser() {
     }

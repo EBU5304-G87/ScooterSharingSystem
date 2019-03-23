@@ -35,6 +35,7 @@ public class Database {
     public static final Database getInstance() {
         return DatabaseHolder.INSTANCE;
     }
+
     public void saveDatabase() {
         writeStations();
         writeRecords();

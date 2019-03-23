@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class SystemController {
     Database db;
     public SystemController() {
@@ -22,4 +25,22 @@ public class SystemController {
         }
         return false;
     }
+
+    public User getUser(int id) {
+        for (User user:db.users) {
+            if (user.getId() == id)
+                return user;
+        }
+        return new User();
+    }
+
+    public List<Record> getRecordsForUser(int id) {
+        List<Record> tempRecords = new ArrayList<Record>();
+        for (Record record:db.records) {
+            if (record.getId() == id)
+                tempRecords.add(record);
+        }
+        return tempRecords;
+    }
+
 }
