@@ -4,7 +4,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class GUI extends Application {
+public class MainApp extends Application {
 
     public static void main(String[] args) {
         launch(args);
@@ -12,9 +12,9 @@ public class GUI extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("GUI.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        Parent root = FXMLLoader.load(getClass().getResource("MainApp.fxml"));
+        primaryStage.setTitle("Scooter Sharing System");
+        primaryStage.setScene(new Scene(root, 800, 600));
         primaryStage.show();
     }
 }
