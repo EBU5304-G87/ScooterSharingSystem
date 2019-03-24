@@ -1,29 +1,31 @@
+import javafx.beans.property.BooleanProperty;
+
 public class Slot {
-    private boolean slot;
-    private boolean lock;
-    private boolean light;
+    BooleanProperty slot;
+    BooleanProperty lock;
+    BooleanProperty light;
 
     public boolean isSlot() {
-        return slot;
+        return slot.get();
     }
 
     public void setSlot(boolean slot) {
-        this.slot = slot;
+        this.slot.set(slot);
     }
 
     public boolean isLock() {
-        return lock;
+        return lock.get();
     }
 
     public void setLock(boolean lock) {
-        this.lock = lock;
+        this.lock.set(lock);
     }
 
     public boolean isLight() {
-        return light;
+        return light.get();
     }
 
     public void setLight(boolean light) {
-        this.light = light;
+        this.light.set(light);
     }
 }

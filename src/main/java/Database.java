@@ -1,6 +1,7 @@
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import org.hildan.fxgson.FxGson;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -18,6 +19,8 @@ public class Database {
     List<Record> records;
     private Gson gsonIn;
     private Gson gsonOut;
+    private Gson fxGsonIn;
+    private Gson fxGsonOut;
 
     private static class DatabaseHolder {
         private static final Database INSTANCE = new Database();
@@ -25,6 +28,8 @@ public class Database {
     private Database() {
         gsonIn = new Gson();
         gsonOut = new GsonBuilder().setPrettyPrinting().create();
+        fxGsonIn = FxGson.create();
+        fxGsonOut = FxGson.coreBuilder().setPrettyPrinting().create();
         try {
             readSchoolUsers();
             readStations();
@@ -42,7 +47,7 @@ public class Database {
         writeUsers();
     }
     void writeStations() {
-        writeFile("Stations", gsonOut.toJson(stations));
+        writeFile("Stations", fxGsonOut.toJson(stations));
     }
     void writeUsers() {
         writeFile("Users", gsonOut.toJson(users));
@@ -51,7 +56,7 @@ public class Database {
         writeFile("Records", gsonOut.toJson(records));
     }
     private void readStations() throws IOException {
-        stations = gsonIn.fromJson(readFile("Stations"), new TypeToken<ArrayList<Station>>(){}.getType());
+        stations = fxGsonIn.fromJson(readFile("Stations"), new TypeToken<ArrayList<Station>>(){}.getType());
     }
     private void readUsers() throws IOException {
         users = gsonIn.fromJson(readFile("Users"), new TypeToken<ArrayList<User>>(){}.getType());

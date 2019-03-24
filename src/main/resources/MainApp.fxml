@@ -4,8 +4,9 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import java.util.ArrayList?>
 
-<SplitPane dividerPositions="0.3" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<SplitPane dividerPositions="0.3" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="StationController">
    <items>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
          <children>
@@ -23,58 +24,61 @@
                                              <children>
                                                 <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                                    <children>
-                                                      <RadioButton layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
-                                                      <RadioButton layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
-                                                      <RadioButton layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
+                                                      <RadioButton fx:id="aSlot0" layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
+                                                      <RadioButton fx:id="aLock0" layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
+                                                      <RadioButton fx:id="aLight0" layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0">
+                                                         <toggleGroup>
+                                                            <ToggleGroup fx:id="aLight" />
+                                                         </toggleGroup></RadioButton>
                                                    </children>
                                                 </AnchorPane>
                                                 <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                                                    <children>
-                                                      <RadioButton layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
-                                                      <RadioButton layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
-                                                      <RadioButton layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
+                                                      <RadioButton fx:id="aSlot1" layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
+                                                      <RadioButton fx:id="aLock1" layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
+                                                      <RadioButton fx:id="aLight1" layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" toggleGroup="$aLight" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
                                                    </children>
                                                 </AnchorPane>
                                                 <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
                                                    <children>
-                                                      <RadioButton layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
-                                                      <RadioButton layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
-                                                      <RadioButton layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
+                                                      <RadioButton fx:id="aSlot2" layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
+                                                      <RadioButton fx:id="aLock2" layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
+                                                      <RadioButton fx:id="aLight2" layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" toggleGroup="$aLight" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
                                                    </children>
                                                 </AnchorPane>
                                                 <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3">
                                                    <children>
-                                                      <RadioButton layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
-                                                      <RadioButton layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
-                                                      <RadioButton layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
+                                                      <RadioButton fx:id="aSlot3" layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
+                                                      <RadioButton fx:id="aLock3" layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
+                                                      <RadioButton fx:id="aLight3" layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" toggleGroup="$aLight" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
                                                    </children>
                                                 </AnchorPane>
                                                 <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                                                    <children>
-                                                      <RadioButton layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
-                                                      <RadioButton layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
-                                                      <RadioButton layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
+                                                      <RadioButton fx:id="aSlot4" layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
+                                                      <RadioButton fx:id="aLock4" layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
+                                                      <RadioButton fx:id="aLight4" layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" toggleGroup="$aLight" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
                                                    </children>
                                                 </AnchorPane>
                                                 <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                    <children>
-                                                      <RadioButton layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
-                                                      <RadioButton layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
-                                                      <RadioButton layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
+                                                      <RadioButton fx:id="aSlot5" layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
+                                                      <RadioButton fx:id="aLock5" layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
+                                                      <RadioButton fx:id="aLight5" layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" toggleGroup="$aLight" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
                                                    </children>
                                                 </AnchorPane>
                                                 <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                                    <children>
-                                                      <RadioButton layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
-                                                      <RadioButton layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
-                                                      <RadioButton layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
+                                                      <RadioButton fx:id="aSlot6" layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
+                                                      <RadioButton fx:id="aLock6" layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
+                                                      <RadioButton fx:id="aLight6" layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" toggleGroup="$aLight" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
                                                    </children>
                                                 </AnchorPane>
                                                 <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                                    <children>
-                                                      <RadioButton layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
-                                                      <RadioButton layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
-                                                      <RadioButton layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
+                                                      <RadioButton fx:id="aSlot7" layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
+                                                      <RadioButton fx:id="aLock7" layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
+                                                      <RadioButton fx:id="aLight7" layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" toggleGroup="$aLight" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
                                                    </children>
                                                 </AnchorPane>
                                              </children>
@@ -93,12 +97,13 @@
                                     </AnchorPane>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                        <children>
-                                          <Label layoutX="18.0" layoutY="16.0" text="LCD" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                          <Label fx:id="aLCD" layoutX="18.0" layoutY="16.0" text="LCD" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
                                              <font>
                                                 <Font size="16.0" />
                                              </font>
                                           </Label>
                                           <Button layoutX="21.0" layoutY="95.0" mnemonicParsing="false" text="Swipe" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
+                                          <TextField layoutX="-6.0" layoutY="70.0" maxWidth="100.0" promptText="Enter ID" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="10.0" />
                                        </children>
                                     </AnchorPane>
                                  </items>
@@ -119,58 +124,61 @@
                                              <children>
                                                 <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                                    <children>
-                                                      <RadioButton layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
-                                                      <RadioButton layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
-                                                      <RadioButton layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
+                                                      <RadioButton fx:id="bSlot0" layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
+                                                      <RadioButton fx:id="bLock0" layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
+                                                      <RadioButton fx:id="bLight0" layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0">
+                                                         <toggleGroup>
+                                                            <ToggleGroup fx:id="bLight" />
+                                                         </toggleGroup></RadioButton>
                                                    </children>
                                                 </AnchorPane>
                                                 <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                                                    <children>
-                                                      <RadioButton layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
-                                                      <RadioButton layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
-                                                      <RadioButton layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
+                                                      <RadioButton fx:id="bSlot1" layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
+                                                      <RadioButton fx:id="bLock1" layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
+                                                      <RadioButton fx:id="bLight1" layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" toggleGroup="$bLight" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
                                                    </children>
                                                 </AnchorPane>
                                                 <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
                                                    <children>
-                                                      <RadioButton layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
-                                                      <RadioButton layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
-                                                      <RadioButton layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
+                                                      <RadioButton fx:id="bSlot2" layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
+                                                      <RadioButton fx:id="bLock2" layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
+                                                      <RadioButton fx:id="bLight2" layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" toggleGroup="$bLight" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
                                                    </children>
                                                 </AnchorPane>
                                                 <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3">
                                                    <children>
-                                                      <RadioButton layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
-                                                      <RadioButton layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
-                                                      <RadioButton layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
+                                                      <RadioButton fx:id="bSlot3" layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
+                                                      <RadioButton fx:id="bLock3" layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
+                                                      <RadioButton fx:id="bLight3" layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" toggleGroup="$bLight" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
                                                    </children>
                                                 </AnchorPane>
                                                 <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                                                    <children>
-                                                      <RadioButton layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
-                                                      <RadioButton layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
-                                                      <RadioButton layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
+                                                      <RadioButton fx:id="bSlot4" layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
+                                                      <RadioButton fx:id="bLock4" layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
+                                                      <RadioButton fx:id="bLight4" layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" toggleGroup="$bLight" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
                                                    </children>
                                                 </AnchorPane>
                                                 <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                    <children>
-                                                      <RadioButton layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
-                                                      <RadioButton layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
-                                                      <RadioButton layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
+                                                      <RadioButton fx:id="bSlot5" layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
+                                                      <RadioButton fx:id="bLock5" layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
+                                                      <RadioButton fx:id="bLight5" layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" toggleGroup="$bLight" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
                                                    </children>
                                                 </AnchorPane>
                                                 <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                                    <children>
-                                                      <RadioButton layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
-                                                      <RadioButton layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
-                                                      <RadioButton layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
+                                                      <RadioButton fx:id="bSlot6" layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
+                                                      <RadioButton fx:id="bLock6" layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
+                                                      <RadioButton fx:id="bLight6" layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" toggleGroup="$bLight" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
                                                    </children>
                                                 </AnchorPane>
                                                 <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                                    <children>
-                                                      <RadioButton layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
-                                                      <RadioButton layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
-                                                      <RadioButton layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
+                                                      <RadioButton fx:id="bSlot7" layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
+                                                      <RadioButton fx:id="bLock7" layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
+                                                      <RadioButton fx:id="bLight7" layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" toggleGroup="$bLight" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
                                                    </children>
                                                 </AnchorPane>
                                              </children>
@@ -189,11 +197,12 @@
                                     </AnchorPane>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                        <children>
-                                          <Label layoutX="18.0" layoutY="16.0" text="LCD" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                          <Label fx:id="bLCD" layoutX="18.0" layoutY="16.0" text="LCD" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
                                              <font>
                                                 <Font size="16.0" />
                                              </font>
                                           </Label>
+                                          <TextField maxWidth="100.0" promptText="Enter ID" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="10.0" />
                                           <Button layoutX="21.0" layoutY="95.0" mnemonicParsing="false" text="Swipe" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
                                        </children>
                                     </AnchorPane>
@@ -215,58 +224,61 @@
                                              <children>
                                                 <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                                    <children>
-                                                      <RadioButton layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
-                                                      <RadioButton layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
-                                                      <RadioButton layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
+                                                      <RadioButton fx:id="cSlot0" layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
+                                                      <RadioButton fx:id="cLock0" layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
+                                                      <RadioButton fx:id="cLight0" layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0">
+                                                         <toggleGroup>
+                                                            <ToggleGroup fx:id="cLight" />
+                                                         </toggleGroup></RadioButton>
                                                    </children>
                                                 </AnchorPane>
                                                 <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                                                    <children>
-                                                      <RadioButton layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
-                                                      <RadioButton layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
-                                                      <RadioButton layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
+                                                      <RadioButton fx:id="cSlot1" layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
+                                                      <RadioButton fx:id="cLock1" layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
+                                                      <RadioButton fx:id="cLight1" layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" toggleGroup="$cLight" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
                                                    </children>
                                                 </AnchorPane>
                                                 <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
                                                    <children>
-                                                      <RadioButton layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
-                                                      <RadioButton layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
-                                                      <RadioButton layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
+                                                      <RadioButton fx:id="cSlot2" layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
+                                                      <RadioButton fx:id="cLock2" layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
+                                                      <RadioButton fx:id="cLight2" layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" toggleGroup="$cLight" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
                                                    </children>
                                                 </AnchorPane>
                                                 <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3">
                                                    <children>
-                                                      <RadioButton layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
-                                                      <RadioButton layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
-                                                      <RadioButton layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
+                                                      <RadioButton fx:id="cSlot3" layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
+                                                      <RadioButton fx:id="cLock3" layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
+                                                      <RadioButton fx:id="cLight3" layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" toggleGroup="$cLight" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
                                                    </children>
                                                 </AnchorPane>
                                                 <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                                                    <children>
-                                                      <RadioButton layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
-                                                      <RadioButton layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
-                                                      <RadioButton layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
+                                                      <RadioButton fx:id="cSlot4" layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
+                                                      <RadioButton fx:id="cLock4" layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
+                                                      <RadioButton fx:id="cLight4" layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" toggleGroup="$cLight" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
                                                    </children>
                                                 </AnchorPane>
                                                 <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                    <children>
-                                                      <RadioButton layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
-                                                      <RadioButton layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
-                                                      <RadioButton layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
+                                                      <RadioButton fx:id="cSlot5" layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
+                                                      <RadioButton fx:id="cLock5" layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
+                                                      <RadioButton fx:id="cLight5" layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" toggleGroup="$cLight" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
                                                    </children>
                                                 </AnchorPane>
                                                 <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                                    <children>
-                                                      <RadioButton layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
-                                                      <RadioButton layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
-                                                      <RadioButton layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
+                                                      <RadioButton fx:id="cSlot6" layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
+                                                      <RadioButton fx:id="cLock6" layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
+                                                      <RadioButton fx:id="cLight6" layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" toggleGroup="$cLight" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
                                                    </children>
                                                 </AnchorPane>
                                                 <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                                    <children>
-                                                      <RadioButton layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
-                                                      <RadioButton layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
-                                                      <RadioButton layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
+                                                      <RadioButton fx:id="cSlot7" layoutX="16.0" layoutY="5.0" mnemonicParsing="false" mouseTransparent="true" text="Available" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
+                                                      <RadioButton fx:id="cLock7" layoutX="28.0" layoutY="26.0" mnemonicParsing="false" mouseTransparent="true" text="Lock" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="26.0" />
+                                                      <RadioButton fx:id="cLight7" layoutX="16.0" layoutY="47.0" mnemonicParsing="false" mouseTransparent="true" text="Light" toggleGroup="$cLight" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" />
                                                    </children>
                                                 </AnchorPane>
                                              </children>
@@ -285,11 +297,12 @@
                                     </AnchorPane>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                        <children>
-                                          <Label layoutX="18.0" layoutY="16.0" text="LCD" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                          <Label fx:id="cLCD" layoutX="18.0" layoutY="16.0" text="LCD" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
                                              <font>
                                                 <Font size="16.0" />
                                              </font>
                                           </Label>
+                                          <TextField maxWidth="100.0" promptText="Enter ID" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="10.0" />
                                           <Button layoutX="21.0" layoutY="95.0" mnemonicParsing="false" text="Swipe" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
                                        </children>
                                     </AnchorPane>
@@ -309,8 +322,8 @@
                <items>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
-                        <Button layoutX="88.0" layoutY="61.0" mnemonicParsing="false" text="List All Users" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" />
-                        <Button layoutX="41.0" layoutY="130.0" mnemonicParsing="false" text="List All Violated Users" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="130.0" />
+                        <Button layoutX="68.0" layoutY="62.0" mnemonicParsing="false" text="List All Users" AnchorPane.topAnchor="40.0" />
+                        <Button layoutX="41.0" layoutY="100.0" mnemonicParsing="false" text="List All Violated Users" AnchorPane.topAnchor="100.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">

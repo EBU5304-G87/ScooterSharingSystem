@@ -1,12 +1,14 @@
+import javafx.beans.property.StringProperty;
+
 public class Station {
-    public Slot[] slots;
-    private String LCD;
+    Slot[] slots;
+    StringProperty LCD;
 
     public String getLCD() {
-        return LCD;
+        return LCD.get();
     }
 
     public void setLCD(String LCD) {
-        this.LCD = LCD;
+        this.LCD.set(LCD);
     }
 }
