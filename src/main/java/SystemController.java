@@ -51,4 +51,8 @@ public class SystemController {
         }
         return vUsers;
     }
+
+    public void nothing() {
+        System.out.println("hhh");
+    }
 }
