@@ -1,3 +1,5 @@
+import javafx.collections.FXCollections;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +10,7 @@ public class SystemController {
     }
 
     public boolean register(int id) {
-        for(SchoolUser schoolUser:db.schoolUsers) {
+        for (SchoolUser schoolUser : db.schoolUsers) {
             if (schoolUser.getId() == id) {
                 db.users.add(schoolUser.getUser());
                 db.writeUsers();
@@ -26,7 +28,7 @@ public class SystemController {
         return false;
     }
 
-    public User getUser(int id) {
+    public User getUserById(int id) {
         for (User user:db.users) {
             if (user.getId() == id)
                 return user;
@@ -43,13 +45,12 @@ public class SystemController {
         return tempRecords;
     }
 
-    public List<User> getViolatedUsers() {
-        List<User> vUsers = new ArrayList<User>();
+    public void getViolatedUsers() {
         for (User user:db.users) {
             if (user.isViolation())
-                vUsers.add(user);
+                db.clearUserData();
+                db.userData.add(user);
         }
-        return vUsers;
     }
 
     public void nothing() {

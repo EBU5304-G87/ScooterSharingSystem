@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import java.util.ArrayList?>
 
-<SplitPane dividerPositions="0.3" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="StationController">
+<SplitPane dividerPositions="0.3" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewController">
    <items>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
          <children>
@@ -102,8 +102,8 @@
                                                 <Font size="16.0" />
                                              </font>
                                           </Label>
-                                          <Button layoutX="21.0" layoutY="95.0" mnemonicParsing="false" text="Swipe" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
-                                          <TextField layoutX="-6.0" layoutY="70.0" maxWidth="100.0" promptText="Enter ID" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="10.0" />
+                                          <Button layoutX="131.0" layoutY="135.0" mnemonicParsing="false" text="Swipe" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="25.0" />
+                                          <TextField layoutX="10.0" layoutY="135.0" maxWidth="100.0" prefHeight="27.0" prefWidth="99.0" promptText="Enter ID" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="10.0" />
                                        </children>
                                     </AnchorPane>
                                  </items>
@@ -318,17 +318,43 @@
       </AnchorPane>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
          <children>
-            <SplitPane dividerPositions="0.3" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <SplitPane dividerPositions="0.2" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <items>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
-                        <Button layoutX="68.0" layoutY="62.0" mnemonicParsing="false" text="List All Users" AnchorPane.topAnchor="40.0" />
-                        <Button layoutX="41.0" layoutY="100.0" mnemonicParsing="false" text="List All Violated Users" AnchorPane.topAnchor="100.0" />
+                        <Button layoutX="68.0" layoutY="62.0" mnemonicParsing="false" onAction="#listUsers" text="List All Users" AnchorPane.topAnchor="40.0" />
+                        <Button layoutX="41.0" layoutY="100.0" mnemonicParsing="false" onAction="#listViolatedUsers" text="List All Violated Users" AnchorPane.topAnchor="100.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
-                        <ListView layoutX="133.0" layoutY="134.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <SplitPane dividerPositions="0.43" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <TableView fx:id="tableUser" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <columns>
+                                        <TableColumn fx:id="colId" text="ID" />
+                                        <TableColumn fx:id="colName" text="Name" />
+                                          <TableColumn fx:id="colEmail" prefWidth="130.0" text="Email" />
+                                          <TableColumn fx:id="colViolation" prefWidth="70.0" text="Violation" />
+                                      </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <TableView fx:id="tableRecord" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <columns>
+                                        <TableColumn fx:id="colRId" text="ID" />
+                                        <TableColumn fx:id="colStime" prefWidth="195.0" text="Start Time" />
+                                          <TableColumn fx:id="colEtime" prefWidth="195.0" text="End Time" />
+                                      </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                          </items>
+                        </SplitPane>
                      </children>
                   </AnchorPane>
                </items>

@@ -1,6 +1,8 @@
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.hildan.fxgson.FxGson;
 
 import java.io.File;
@@ -17,6 +19,8 @@ public class Database {
     List<Station> stations;
     List<User> users;
     List<Record> records;
+    ObservableList<User> userData;
+    ObservableList<Record> recordData;
     private Gson gsonIn;
     private Gson gsonOut;
     private Gson fxGsonIn;
@@ -30,6 +34,8 @@ public class Database {
         gsonOut = new GsonBuilder().setPrettyPrinting().create();
         fxGsonIn = FxGson.create();
         fxGsonOut = FxGson.coreBuilder().setPrettyPrinting().create();
+        userData = FXCollections.observableArrayList();
+        recordData = FXCollections.observableArrayList();
         try {
             readSchoolUsers();
             readStations();
@@ -46,23 +52,27 @@ public class Database {
         writeRecords();
         writeUsers();
     }
+
+    public void clearUserData() {
+        userData.removeAll();
+    }
     void writeStations() {
         writeFile("Stations", fxGsonOut.toJson(stations));
     }
     void writeUsers() {
-        writeFile("Users", gsonOut.toJson(users));
+        writeFile("Users", fxGsonOut.toJson(users));
     }
     void writeRecords() {
-        writeFile("Records", gsonOut.toJson(records));
+        writeFile("Records", fxGsonOut.toJson(records));
     }
     private void readStations() throws IOException {
         stations = fxGsonIn.fromJson(readFile("Stations"), new TypeToken<ArrayList<Station>>(){}.getType());
     }
     private void readUsers() throws IOException {
-        users = gsonIn.fromJson(readFile("Users"), new TypeToken<ArrayList<User>>(){}.getType());
+        users = fxGsonIn.fromJson(readFile("Users"), new TypeToken<ArrayList<User>>(){}.getType());
     }
     private void readRecords() throws IOException {
-        records = gsonIn.fromJson(readFile("Records"), new TypeToken<ArrayList<Record>>(){}.getType());
+        records = fxGsonIn.fromJson(readFile("Records"), new TypeToken<ArrayList<Record>>(){}.getType());
     }
 
     private void readSchoolUsers() throws IOException {
