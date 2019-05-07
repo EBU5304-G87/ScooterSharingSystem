@@ -93,4 +93,12 @@ public class Database {
     private String readFile(String filename) throws IOException {
         return new Scanner(new File("src/data/" + filename + ".json")).useDelimiter("\\Z").next();
     }
+
+    public User getUserById(int id) {
+        for (User user:users) {
+            if (user.getId() == id)
+                return user;
+        }
+        return new User();
+    }
 }

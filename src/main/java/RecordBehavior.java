@@ -15,7 +15,7 @@ public class RecordBehavior {
     }
 
     /**
-     * Record end time when user return a scooter
+     * Record end time when user return a scooter and set the user's Violation
      * @param id user ID
      * @return single use time in minute
      */
@@ -32,14 +32,18 @@ public class RecordBehavior {
             }
         }
         if(rc != null)   rc.stopRecord();
-
+        for(int i=0; i<db.records.size(); i++){
+            if(db.records.get(i).getId()== id)
+                if( (rc.getEnd().getTime() - rc.getBegin().getTime()) / 60000>30)
+                    db.getUserById(id).setViolation(true);
+        }
         return (rc.getEnd().getTime()
                 - rc.getBegin().getTime())
                 / 60000;
     }
 
     /**
-     * get total use time in a particular day
+     * get total use time in a particular day and set the user's Violation
      * @param id user ID
      * @param aDate the day used to search
      * @return total use time in minute
@@ -54,7 +58,11 @@ public class RecordBehavior {
                            / 60000;
             }
         }
-
+        for(int i=0; i<db.records.size(); i++){
+            if(db.records.get(i).getId()== id)
+                if(totalTime>120)
+                    db.getUserById(id).setViolation(true);
+        }
         return totalTime;
     }
 
