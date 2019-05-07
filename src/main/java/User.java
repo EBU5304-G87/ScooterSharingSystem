@@ -2,6 +2,7 @@ import javafx.beans.property.*;
 
 public class User {
     BooleanProperty violation;
+    BooleanProperty borrowed;
     IntegerProperty id;
     StringProperty name;
     StringProperty email;
@@ -11,6 +12,7 @@ public class User {
         name = new SimpleStringProperty("");
         email = new SimpleStringProperty("");
         violation = new SimpleBooleanProperty(false);
+        borrowed = new SimpleBooleanProperty(false);
     }
 
     public User(int id, String name, String email) {
@@ -18,6 +20,7 @@ public class User {
         this.name = new SimpleStringProperty(name);
         this.email = new SimpleStringProperty(email);
         this.violation = new SimpleBooleanProperty(false);
+        this.borrowed = new SimpleBooleanProperty(false);
     }
 
     public boolean isViolation() {
@@ -26,6 +29,14 @@ public class User {
 
     public void setViolation(boolean violation) {
         this.violation.set(violation);
+    }
+
+    public boolean isBorrowed(){
+        return borrowed.get();
+    }
+
+    public void setBorrowed(boolean borrowed){
+        this.borrowed.set(borrowed);
     }
 
     public int getId() {
