@@ -2,13 +2,13 @@
   {
     "slots": [
       {
-        "slot": true,
-        "lock": true,
+        "slot": false,
+        "lock": false,
         "light": false
       },
       {
         "slot": true,
-        "lock": true,
+        "lock": false,
         "light": false
       },
       {

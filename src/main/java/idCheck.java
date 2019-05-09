@@ -1,3 +1,4 @@
+import java.util.Date;
 import java.util.Scanner;
 
 public class idCheck {
@@ -25,7 +26,8 @@ public class idCheck {
             if(isScooterAway==1)
             {
                 System.out.println("here");
-                db.records.add(new Record(db.users.get(num).getId()));
+                db.records.add(new Record(db.users.get(num).getId(),new Date(0), new Date(0)));
+
                 db.records.get(db.records.size() - 1).startRecord();
             }
             else

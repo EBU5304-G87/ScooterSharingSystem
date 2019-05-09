@@ -1,14 +1,14 @@
 [
   {
     "violation": false,
-    "borrowed": false,
+    "borrowed": true,
     "id": 123456789,
     "name": "Dan Ho",
     "email": "igaryhe@gmail.com"
   },
   {
     "violation": false,
-    "borrowed": false,
+    "borrowed": true,
     "id": 2016213583,
     "name": "Xianghe Fan",
     "email": "fanxianghe@bupt.edu.cn"
