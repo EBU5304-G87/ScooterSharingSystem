@@ -1,13 +1,15 @@
-import javafx.beans.Observable;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.Date;
 
 public class ViewController {
@@ -44,6 +46,9 @@ public class ViewController {
     private TableColumn<Record, Date> colEtime;
     @FXML
     public void initialize() {
+        db = Database.getInstance();
+        sc = new SystemController();
+
         aLights = new RadioButton[] {aLight0, aLight1, aLight2, aLight3, aLight4, aLight5, aLight6, aLight7};
         aSlots = new RadioButton[] {aSlot0, aSlot1, aSlot2, aSlot3, aSlot4, aSlot5, aSlot6, aSlot7};
         aLocks = new RadioButton[] {aLock0, aLock1, aLock2, aLock3, aLock4, aLock5, aLock6, aLock7};
@@ -53,8 +58,7 @@ public class ViewController {
         cLights = new RadioButton[] {cLight0, cLight1, cLight2, cLight3, cLight4, cLight5, cLight6, cLight7};
         cLocks = new RadioButton[] {cLock0, cLock1, cLock2, cLock3, cLock4, cLock5, cLock6, cLock7};
         cSlots = new RadioButton[] {cSlot0, cSlot1, cSlot2, cSlot3, cSlot4, cSlot5, cSlot6, cSlot7};
-        db = Database.getInstance();
-        sc = new SystemController();
+
         for (int i = 0; i != 8; i++) {
             aLights[i].selectedProperty().bindBidirectional(db.stations.get(0).slots[i].light);
             aLocks[i].selectedProperty().bindBidirectional(db.stations.get(0).slots[i].lock);
@@ -70,6 +74,7 @@ public class ViewController {
             cLocks[i].selectedProperty().bindBidirectional(db.stations.get(2).slots[i].lock);
             cSlots[i].selectedProperty().bindBidirectional(db.stations.get(2).slots[i].slot);
         }
+
         aLCD.textProperty().bindBidirectional(db.stations.get(0).LCD);
         bLCD.textProperty().bindBidirectional(db.stations.get(1).LCD);
         cLCD.textProperty().bindBidirectional(db.stations.get(2).LCD);
@@ -93,20 +98,29 @@ public class ViewController {
 
     @FXML
     public void listUsers() {
-        db.userData.removeAll(db.userData);
-        for (User user:db.users) {
-            db.userData.add(user);
-        }
+        db.userData.clear();
+        db.userData.addAll(db.users);
     }
 
     @FXML
     public void listViolatedUsers() {
-        db.userData.removeAll(db.userData);
+        db.userData.clear();
         for (User user:db.users) {
             if (user.isViolation()) {
                 db.userData.add(user);
             }
         }
     }
-
+    @FXML
+    public void openRegWindow(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("Register.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Register");
+            stage.setScene(new Scene(root, 400, 200));
+            stage.show();
+        } catch (IOException e) {
+            System.out.println("Cannot found file");
+        }
+    }
 }

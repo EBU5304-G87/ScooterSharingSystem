@@ -62,4 +62,12 @@ public class User {
     public void setEmail(String email) {
         this.email.set(email);
     }
+
+    public String toString(){
+        return "id: " + id +
+                " name: " + name +
+                " email: " + email +
+                " violation" + violation +
+                " borrowed: " + borrowed;
+    }
 }
