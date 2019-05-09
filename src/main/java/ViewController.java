@@ -44,6 +44,9 @@ public class ViewController {
     private TableColumn<Record, Date> colEtime;
     @FXML
     public void initialize() {
+        db = Database.getInstance();
+        sc = new SystemController();
+
         aLights = new RadioButton[] {aLight0, aLight1, aLight2, aLight3, aLight4, aLight5, aLight6, aLight7};
         aSlots = new RadioButton[] {aSlot0, aSlot1, aSlot2, aSlot3, aSlot4, aSlot5, aSlot6, aSlot7};
         aLocks = new RadioButton[] {aLock0, aLock1, aLock2, aLock3, aLock4, aLock5, aLock6, aLock7};
@@ -53,8 +56,7 @@ public class ViewController {
         cLights = new RadioButton[] {cLight0, cLight1, cLight2, cLight3, cLight4, cLight5, cLight6, cLight7};
         cLocks = new RadioButton[] {cLock0, cLock1, cLock2, cLock3, cLock4, cLock5, cLock6, cLock7};
         cSlots = new RadioButton[] {cSlot0, cSlot1, cSlot2, cSlot3, cSlot4, cSlot5, cSlot6, cSlot7};
-        db = Database.getInstance();
-        sc = new SystemController();
+
         for (int i = 0; i != 8; i++) {
             aLights[i].selectedProperty().bindBidirectional(db.stations.get(0).slots[i].light);
             aLocks[i].selectedProperty().bindBidirectional(db.stations.get(0).slots[i].lock);
@@ -70,6 +72,7 @@ public class ViewController {
             cLocks[i].selectedProperty().bindBidirectional(db.stations.get(2).slots[i].lock);
             cSlots[i].selectedProperty().bindBidirectional(db.stations.get(2).slots[i].slot);
         }
+
         aLCD.textProperty().bindBidirectional(db.stations.get(0).LCD);
         bLCD.textProperty().bindBidirectional(db.stations.get(1).LCD);
         cLCD.textProperty().bindBidirectional(db.stations.get(2).LCD);
