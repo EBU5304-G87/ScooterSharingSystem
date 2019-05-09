@@ -1,4 +1,5 @@
 import javafx.collections.FXCollections;
+import org.apache.commons.validator.routines.EmailValidator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,15 +10,20 @@ public class SystemController {
         this.db = Database.getInstance();
     }
 
-    public boolean register(int id) {
-        for (SchoolUser schoolUser : db.schoolUsers) {
-            if (schoolUser.getId() == id) {
-                db.users.add(schoolUser.getUser());
-                db.writeUsers();
-                return true;
+    public boolean register(int id, String name, String email) {
+        EmailValidator ev = EmailValidator.getInstance();
+        if (!ev.isValid(email) || id / 100000000 == 0)
+            return false;
+        else {
+            for (SchoolUser schoolUser : db.schoolUsers) {
+                if (schoolUser.getId() == id && schoolUser.getName().equals(name)) {
+                    db.users.add(schoolUser.getUser());
+                    db.writeUsers();
+                    return true;
+                }
             }
+            return false;
         }
-        return false;
     }
 
     public boolean verifyId(int id) {
@@ -51,9 +57,5 @@ public class SystemController {
                 db.clearUserData();
                 db.userData.add(user);
         }
-    }
-
-    public void nothing() {
-        System.out.println("hhh");
     }
 }
