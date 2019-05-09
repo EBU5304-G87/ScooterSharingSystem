@@ -96,15 +96,13 @@ public class ViewController {
 
     @FXML
     public void listUsers() {
-        db.userData.removeAll(db.userData);
-        for (User user:db.users) {
-            db.userData.add(user);
-        }
+        db.userData.removeAll();
+        db.userData.addAll(db.users);
     }
 
     @FXML
     public void listViolatedUsers() {
-        db.userData.removeAll(db.userData);
+        db.userData.removeAll();
         for (User user:db.users) {
             if (user.isViolation()) {
                 db.userData.add(user);
