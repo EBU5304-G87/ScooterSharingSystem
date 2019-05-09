@@ -1,13 +1,15 @@
-import javafx.beans.Observable;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.Date;
 
 public class ViewController {
@@ -107,6 +109,18 @@ public class ViewController {
             if (user.isViolation()) {
                 db.userData.add(user);
             }
+        }
+    }
+    @FXML
+    public void openRegWindow(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("Register.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Register");
+            stage.setScene(new Scene(root, 400, 200));
+            stage.show();
+        } catch (IOException e) {
+            System.out.println("Cannot found file");
         }
     }
 }
