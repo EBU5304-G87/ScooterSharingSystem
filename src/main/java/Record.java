@@ -45,10 +45,18 @@ public class Record {
     ObjectProperty<Date> end;
     public Record(int id) {
         this.id = new SimpleIntegerProperty(id);
+        this.begin = new SimpleObjectProperty<Date>();
+        this.end = new SimpleObjectProperty<Date>();
     }
     public Record(int id, Date begin, Date end) {
         this.id = new SimpleIntegerProperty(id);
         this.begin = new SimpleObjectProperty<Date>(begin);
         this.end = new SimpleObjectProperty<Date>(end);
+    }
+
+    public String toString(){
+        return "id: " + id +
+                " begin: " + begin +
+                " end: " + end;
     }
 }

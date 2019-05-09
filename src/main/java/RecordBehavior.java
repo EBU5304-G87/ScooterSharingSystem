@@ -15,6 +15,10 @@ public class RecordBehavior {
         Record rc = new Record(id);
         rc.startRecord();
         db.records.add(rc);
+        for(int i=0; i<db.users.size(); i++) {
+            if(db.users.get(i).getId() == id)
+                db.users.get(i).setBorrowed(true);
+        }
     }
 
     /**
@@ -34,7 +38,12 @@ public class RecordBehavior {
                 }
             }
         }
-        if(rc != null)   rc.stopRecord();
+
+        rc.stopRecord();
+        for(int i=0; i<db.users.size(); i++) {
+            if(db.users.get(i).getId() == id)
+                db.users.get(i).setBorrowed(false);
+            }
 
         return (rc.getEnd().getTime()
                 - rc.getBegin().getTime())
