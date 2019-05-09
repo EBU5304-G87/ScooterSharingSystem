@@ -17,20 +17,17 @@ public class idCheck {
             }
         }
 
-        if(isUser == true && db.users.get(num).isBorrowed() == false && db.users.get(num).isViolation() == false){
+        if(isUser && !db.users.get(num).isBorrowed() && !db.users.get(num).isViolation()) {
             db.users.get(num).setBorrowed(true);
             System.out.println("here");
             Station a=new Station();
             int isScooterAway=a.unlockSlot(0);
-            if(isScooterAway==1)
-            {
+            if(isScooterAway==1) {
                 System.out.println("here");
                 db.records.add(new Record(db.users.get(num).getId()));
                 db.records.get(db.records.size() - 1).startRecord();
-            }
-            else
-            {
-                isUser=false;
+            } else {
+                isUser = false;
             }
         }
 
