@@ -3,18 +3,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Date;
 
 public class ViewController {
-    Database db;
-    SystemController sc;
+    private Database db;
+    private SystemController sc;
     @FXML
     private RadioButton aLight0, aLight1, aLight2, aLight3, aLight4, aLight5, aLight6, aLight7,
             aSlot0, aSlot1, aSlot2, aSlot3, aSlot4, aSlot5, aSlot6, aSlot7,
@@ -85,10 +82,6 @@ public class ViewController {
         colEmail.setCellValueFactory(cellData -> cellData.getValue().email);
         tableUser.setItems(db.userData);
 
-        User usr = new User(987654321, "test", "tt@t.tt");
-        usr.setViolation(true);
-        db.users.add(usr);
-
         colRId.setCellValueFactory(cellData -> cellData.getValue().id.asObject());
         colStime.setCellValueFactory(cellData -> cellData.getValue().begin);
         colEtime.setCellValueFactory(cellData -> cellData.getValue().end);
@@ -122,5 +115,41 @@ public class ViewController {
         } catch (IOException e) {
             System.out.println("Cannot found file");
         }
+    }
+
+    @FXML
+    private TextField input;
+    private Button swipe;
+
+    @FXML
+    public void unlock() {
+        int id = Integer.parseInt(input.getText());
+        boolean isUser = false;
+        int i, num = 0;
+
+        for(i = 0; i < db.users.size(); i++){
+            User u = db.users.get(i);
+            if(u.getId() == id) {
+                isUser = true;
+                num = i;
+            }
+        }
+
+        if(isUser && !db.users.get(num).isViolation()) {
+            if (!db.users.get(num).isBorrowed()) {
+                if (db.stations.get(0).unlockSlot()) {
+                    db.writeStations();
+                    db.users.get(num).setBorrowed(true);
+                    db.records.add(new Record(db.users.get(num).getId(), new Date(0), new Date(0)));
+                    db.records.get(db.records.size() - 1).startRecord();
+                }
+            } else {
+                if (db.stations.get(0).returnScooter()) {
+                    db.writeStations();
+                    db.users.get(num).setBorrowed(false);
+                }
+            }
+        }
+        db.writeUsers();
     }
 }

@@ -2,13 +2,13 @@
   {
     "slots": [
       {
-        "slot": false,
-        "lock": false,
+        "slot": true,
+        "lock": true,
         "light": false
       },
       {
         "slot": true,
-        "lock": false,
+        "lock": true,
         "light": false
       },
       {
@@ -42,7 +42,7 @@
         "light": false
       }
     ],
-    "LCD": "haha233"
+    "LCD": "LCD"
   },
   {
     "slots": [
