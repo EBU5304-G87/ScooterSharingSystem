@@ -21,15 +21,15 @@ public class Database {
     List<Record> records;
     ObservableList<User> userData;
     ObservableList<Record> recordData;
-    private Gson gsonIn;
-    private Gson gsonOut;
-    private Gson fxGsonIn;
-    private Gson fxGsonOut;
+    public Gson gsonIn;
+    public Gson gsonOut;
+    public Gson fxGsonIn;
+    public Gson fxGsonOut;
 
-    private static class DatabaseHolder {
-        private static final Database INSTANCE = new Database();
+    public static class DatabaseHolder {
+        public static final Database INSTANCE = new Database();
     }
-    private Database() {
+    public Database() {
         gsonIn = new Gson();
         gsonOut = new GsonBuilder().setPrettyPrinting().create();
         fxGsonIn = FxGson.create();
@@ -65,23 +65,23 @@ public class Database {
     void writeRecords() {
         writeFile("Records", fxGsonOut.toJson(records));
     }
-    private void readStations() throws IOException {
+    public void readStations() throws IOException {
         stations = fxGsonIn.fromJson(readFile("Stations"), new TypeToken<ArrayList<Station>>(){}.getType());
     }
-    private void readUsers() throws IOException {
+    public void readUsers() throws IOException {
         users = fxGsonIn.fromJson(readFile("Users"), new TypeToken<ArrayList<User>>(){}.getType());
     }
-    private void readRecords() throws IOException {
+    public void readRecords() throws IOException {
         records = fxGsonIn.fromJson(readFile("Records"), new TypeToken<ArrayList<Record>>(){}.getType());
     }
 
-    private void readSchoolUsers() throws IOException {
+    public void readSchoolUsers() throws IOException {
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(classLoader.getResource("SchoolUsers.json").getFile());
         schoolUsers = gsonIn.fromJson(new String(Files.readAllBytes(file.toPath())), SchoolUser[].class);
     }
 
-    private void writeFile(String filename, String content) {
+    public void writeFile(String filename, String content) {
         try {
             PrintWriter out = new PrintWriter("src/data/" + filename + ".json");
             out.print(content);
@@ -90,7 +90,7 @@ public class Database {
             System.out.println("Write error");
         }
     }
-    private String readFile(String filename) throws IOException {
+    public String readFile(String filename) throws IOException {
         return new Scanner(new File("src/data/" + filename + ".json")).useDelimiter("\\Z").next();
     }
 }
