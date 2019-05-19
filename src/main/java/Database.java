@@ -21,17 +21,15 @@ public class Database {
     List<Record> records;
     ObservableList<User> userData;
     ObservableList<Record> recordData;
-    public Gson gsonIn;
-    public Gson gsonOut;
-    public Gson fxGsonIn;
-    public Gson fxGsonOut;
+    private Gson gsonIn;
+    private Gson fxGsonIn;
+    private Gson fxGsonOut;
 
     public static class DatabaseHolder {
         public static final Database INSTANCE = new Database();
     }
-    public Database() {
+    Database() {
         gsonIn = new Gson();
-        gsonOut = new GsonBuilder().setPrettyPrinting().create();
         fxGsonIn = FxGson.create();
         fxGsonOut = FxGson.coreBuilder().setPrettyPrinting().create();
         userData = FXCollections.observableArrayList();
@@ -41,13 +39,15 @@ public class Database {
             readStations();
             readUsers();
             readRecords();
-        } catch (IOException e) {}
+        } catch (IOException e) {
+            System.out.println("IO Exception");
+        }
     }
-    public static final Database getInstance() {
+    public static Database getInstance() {
         return DatabaseHolder.INSTANCE;
     }
 
-    public void saveDatabase() {
+    public void save() {
         writeStations();
         writeRecords();
         writeUsers();
@@ -56,32 +56,32 @@ public class Database {
     public void clearUserData() {
         userData.removeAll();
     }
-    void writeStations() {
+    private void writeStations() {
         writeFile("Stations", fxGsonOut.toJson(stations));
     }
-    void writeUsers() {
+    private void writeUsers() {
         writeFile("Users", fxGsonOut.toJson(users));
     }
-    void writeRecords() {
+    private void writeRecords() {
         writeFile("Records", fxGsonOut.toJson(records));
     }
-    public void readStations() throws IOException {
+    private void readStations() throws IOException {
         stations = fxGsonIn.fromJson(readFile("Stations"), new TypeToken<ArrayList<Station>>(){}.getType());
     }
-    public void readUsers() throws IOException {
+    private void readUsers() throws IOException {
         users = fxGsonIn.fromJson(readFile("Users"), new TypeToken<ArrayList<User>>(){}.getType());
     }
-    public void readRecords() throws IOException {
+    private void readRecords() throws IOException {
         records = fxGsonIn.fromJson(readFile("Records"), new TypeToken<ArrayList<Record>>(){}.getType());
     }
 
-    public void readSchoolUsers() throws IOException {
+    private void readSchoolUsers() throws IOException {
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(classLoader.getResource("SchoolUsers.json").getFile());
         schoolUsers = gsonIn.fromJson(new String(Files.readAllBytes(file.toPath())), SchoolUser[].class);
     }
 
-    public void writeFile(String filename, String content) {
+    private void writeFile(String filename, String content) {
         try {
             PrintWriter out = new PrintWriter("src/data/" + filename + ".json");
             out.print(content);
@@ -90,7 +90,7 @@ public class Database {
             System.out.println("Write error");
         }
     }
-    public String readFile(String filename) throws IOException {
+    private String readFile(String filename) throws IOException {
         return new Scanner(new File("src/data/" + filename + ".json")).useDelimiter("\\Z").next();
     }
 }

@@ -2,6 +2,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.apache.commons.validator.routines.EmailValidator;
 
 public class RegisterController {
     @FXML
@@ -9,8 +10,7 @@ public class RegisterController {
 
     @FXML
     private void submit() {
-        SystemController sc = new SystemController();
-        if (sc.register(Integer.parseInt(idField.getText()), nameField.getText(), emailField.getText())) {
+        if (register(Integer.parseInt(idField.getText()), nameField.getText(), emailField.getText())) {
             idField.setText("");
             nameField.setText("");
             emailField.setText("");
@@ -27,6 +27,23 @@ public class RegisterController {
             alert.setHeaderText("Invalid");
             alert.setContentText("Ooops, there was an error!");
             alert.showAndWait();
+        }
+    }
+
+    private boolean register(int id, String name, String email) {
+        Database db = Database.getInstance();
+        EmailValidator ev = EmailValidator.getInstance();
+        if (!ev.isValid(email) || id / 100000000 == 0)
+            return false;
+        else {
+            for (SchoolUser schoolUser : db.schoolUsers) {
+                if (schoolUser.getId() == id && schoolUser.getName().equals(name)) {
+                    db.users.add(schoolUser.getUser());
+                    db.save();
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

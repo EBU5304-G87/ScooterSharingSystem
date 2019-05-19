@@ -66,7 +66,6 @@ public class RecordBehavior {
                         / 60000;
             }
         }
-
         return totalTime;
     }
 
@@ -82,7 +81,7 @@ public class RecordBehavior {
         cal1.setTime(date1);
         cal2.setTime(date2);
 
-        return (cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
-                cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR))? true : false;
+        return cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
+                cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR);
     }
 }

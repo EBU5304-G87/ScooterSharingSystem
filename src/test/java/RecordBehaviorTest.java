@@ -1,4 +1,3 @@
-import javafx.beans.property.IntegerProperty;
 import org.junit.Test;
 import java.util.Date;
 
@@ -19,7 +18,7 @@ public class RecordBehaviorTest {
                 System.out.println(db.users.get(i));
         }
 
-        db.saveDatabase();
+        db.save();
     }
 
     @Test
@@ -36,6 +35,6 @@ public class RecordBehaviorTest {
             if(db.users.get(i).getId() == id)
                 System.out.println(db.users.get(i));
         }
-        db.saveDatabase();
+        db.save();
     }
 }

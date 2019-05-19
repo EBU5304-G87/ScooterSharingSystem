@@ -28,4 +28,17 @@ public class Slot {
     public void setLight(boolean light) {
         this.light.set(light);
     }
+
+    BooleanProperty getValue(int i) {
+        switch (i) {
+            case 0:
+                return light;
+            case 1:
+                return lock;
+            case 2:
+                return slot;
+            default:
+                return slot;
+        }
+    }
 }
