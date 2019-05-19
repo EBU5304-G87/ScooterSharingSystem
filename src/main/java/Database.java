@@ -103,21 +103,19 @@ public class Database {
     }
 
     List<Record> getUserRecord(int id) {
-        List<Record> list = new ArrayList<Record>();
+        List<Record> list = new ArrayList<>();
         for (Record r : records)
             if (r.getId() == id) list.add(r);
         return list;
     }
 
-    public boolean isTotalTimeExceeded(int id) {
+    boolean isTotalTimeExceeded(int id) {
         Date today = new Date();
         long totalTime = 0;
         List<Record> userList = getUserRecord(id);
         for (Record r : userList) {
              if(isSameDay(r.getBegin(),today)) {
-                 totalTime += (r.getEnd().getTime()
-                         - r.getBegin().getTime())
-                         / 60000;
+                 totalTime += (r.getEnd().getTime() - r.getBegin().getTime()) / 60000;
              }
         }
         return totalTime > 120;

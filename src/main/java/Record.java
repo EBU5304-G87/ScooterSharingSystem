@@ -14,9 +14,7 @@ public class Record {
 
     public void stopRecord() {
         end.set(new Date());
-        long time = getEnd().getTime()
-                - getBegin().getTime()
-                / 60000;
+        long time = (getEnd().getTime() - getBegin().getTime()) / 60000;
         if (time > 30)
             isExceeded.set(true);
     }
@@ -40,16 +38,17 @@ public class Record {
         this.id = new SimpleIntegerProperty(id);
         this.begin = new SimpleObjectProperty<>();
         this.end = new SimpleObjectProperty<>();
-        this.isExceeded.set(false);
+        this.isExceeded = new SimpleBooleanProperty(false);
     }
 
     public Record(int id, Date begin, Date end) {
         this.id = new SimpleIntegerProperty(id);
         this.begin = new SimpleObjectProperty<>(begin);
         this.end = new SimpleObjectProperty<>(end);
+        this.isExceeded = new SimpleBooleanProperty(false);
     }
 
-    public String toString(){
+    public String toString() {
         return "id: " + id +
                 " begin: " + begin +
                 " end: " + end;

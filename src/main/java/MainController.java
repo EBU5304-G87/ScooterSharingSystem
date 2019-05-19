@@ -101,7 +101,6 @@ public class MainController {
     private void unlock(int i) {
         Station station = db.stations.get(i);
         try {
-            System.out.println(inputs.get(i).getText());
             int id = Integer.parseInt(inputs.get(i).getText());
             for (User user : db.users) {
                 if (user.getId() == id) {
