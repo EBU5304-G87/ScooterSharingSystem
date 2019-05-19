@@ -59,7 +59,8 @@ public class Station {
                 Platform.runLater(() -> setLCD("Locked"));
                 unlocked = -1;
                 db.save();
-                System.gc();
+                timer.cancel();
+                timer.purge();
             }
         }, 6 * 1000);
     }
