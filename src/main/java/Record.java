@@ -6,21 +6,10 @@ import javafx.beans.property.SimpleObjectProperty;
 import java.util.Date;
 
 public class Record {
-    /*
-    private int id;
-    private Date begin;
-    private Date end;
+    IntegerProperty id;
+    ObjectProperty<Date> begin;
+    ObjectProperty<Date> end;
 
-    public Record(int id) {
-        this.id = id;
-    }
-
-    public Record(int id, Date begin, Date end) {
-        this.id = id;
-        this.begin = begin;
-        this.end = end;
-    }
-    */
     public void startRecord() {
         begin.set(new Date());
     }
@@ -40,18 +29,16 @@ public class Record {
     public Date getEnd() {
         return end.get();
     }
-    IntegerProperty id;
-    ObjectProperty<Date> begin;
-    ObjectProperty<Date> end;
     public Record(int id) {
         this.id = new SimpleIntegerProperty(id);
-        this.begin = new SimpleObjectProperty<Date>();
-        this.end = new SimpleObjectProperty<Date>();
+        this.begin = new SimpleObjectProperty<>();
+        this.end = new SimpleObjectProperty<>();
     }
+
     public Record(int id, Date begin, Date end) {
         this.id = new SimpleIntegerProperty(id);
-        this.begin = new SimpleObjectProperty<Date>(begin);
-        this.end = new SimpleObjectProperty<Date>(end);
+        this.begin = new SimpleObjectProperty<>(begin);
+        this.end = new SimpleObjectProperty<>(end);
     }
 
     public String toString(){
