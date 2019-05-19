@@ -1,7 +1,4 @@
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.*;
 
 import java.util.Date;
 
@@ -9,6 +6,7 @@ public class Record {
     IntegerProperty id;
     ObjectProperty<Date> begin;
     ObjectProperty<Date> end;
+    BooleanProperty isExceeded;
 
     public void startRecord() {
         begin.set(new Date());
@@ -16,6 +14,15 @@ public class Record {
 
     public void stopRecord() {
         end.set(new Date());
+        long time = getEnd().getTime()
+                - getBegin().getTime()
+                / 60000;
+        if (time > 30)
+            isExceeded.set(true);
+    }
+
+    boolean getIsExceeded() {
+        return isExceeded.get();
     }
 
     public int getId() {
@@ -33,6 +40,7 @@ public class Record {
         this.id = new SimpleIntegerProperty(id);
         this.begin = new SimpleObjectProperty<>();
         this.end = new SimpleObjectProperty<>();
+        this.isExceeded.set(false);
     }
 
     public Record(int id, Date begin, Date end) {

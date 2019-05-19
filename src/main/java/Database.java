@@ -10,9 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Database {
     SchoolUser[] schoolUsers;
@@ -93,4 +91,36 @@ public class Database {
     private String readFile(String filename) throws IOException {
         return new Scanner(new File("src/data/" + filename + ".json")).useDelimiter("\\Z").next();
     }
+
+    private boolean isSameDay(Date date1, Date date2){
+        Calendar cal1 = Calendar.getInstance();
+        Calendar cal2 = Calendar.getInstance();
+        cal1.setTime(date1);
+        cal2.setTime(date2);
+
+        return cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
+                cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR);
+    }
+
+    List<Record> getUserRecord(int id) {
+        List<Record> list = new ArrayList<Record>();
+        for (Record r : records)
+            if (r.getId() == id) list.add(r);
+        return list;
+    }
+
+    public boolean isTotalTimeExceeded(int id) {
+        Date today = new Date();
+        long totalTime = 0;
+        List<Record> userList = getUserRecord(id);
+        for (Record r : userList) {
+             if(isSameDay(r.getBegin(),today)) {
+                 totalTime += (r.getEnd().getTime()
+                         - r.getBegin().getTime())
+                         / 60000;
+             }
+        }
+        return totalTime > 120;
+    }
+
 }

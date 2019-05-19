@@ -145,7 +145,11 @@ public class MainController {
             } else {
                 // return the scooter
                 station.slots[station.unlocked].slot.set(true);
-                // TODO: need to set the return time
+                List<Record> records = db.getUserRecord(station.curUser.getId());
+                Record r = records.get(records.size() - 1);
+                r.stopRecord();
+                if (r.getIsExceeded() || db.isTotalTimeExceeded(station.curUser.getId()))
+                    station.curUser.setViolation(true);
                 station.curUser.setBorrowed(false);
             }
             station.timer.cancel();
