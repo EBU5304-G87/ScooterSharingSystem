@@ -10,6 +10,10 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * The interface's control and build
+ * @author Group 87
+ */
 public class MainController {
     private Database db;
     @FXML
@@ -34,6 +38,10 @@ public class MainController {
     private TableColumn<Record, Date> colEtime;
     @FXML
     private List<TextField> inputs;
+
+    /**
+     * Initialize the interface.
+     */
     @FXML
     public void initialize() {
         db = Database.getInstance();
@@ -60,12 +68,18 @@ public class MainController {
         db.recordData.add(new Record(123456789, new Date(), new Date()));
     }
 
+    /**
+     * List users' control.
+     */
     @FXML
     public void listUsers() {
         db.userData.clear();
         db.userData.addAll(db.users);
     }
 
+    /**
+     * List violated users' control
+     */
     @FXML
     public void listViolatedUsers() {
         db.userData.clear();
@@ -76,6 +90,10 @@ public class MainController {
         }
     }
 
+    /**
+     * This is control of open register window.
+     * @param event open register window event.
+     */
     @FXML
     public void openRegWindow(ActionEvent event) {
         try {
@@ -89,15 +107,27 @@ public class MainController {
         }
     }
 
+    /**
+     * Unlock
+     */
     @FXML
     private void unlockOne() { unlock(0); }
 
+    /**
+     * Unlock
+     */
     @FXML
     private void unlockTwo() { unlock(1); }
 
+    /**
+     * Unlock
+     */
     @FXML
     private void unlockThree() { unlock(2); }
 
+    /**
+     * Unlock the stations
+     */
     private void unlock(int i) {
         Station station = db.stations.get(i);
         try {
@@ -124,15 +154,27 @@ public class MainController {
         db.stations.get(i).setLCD("Invalid id");
     }
 
+    /**
+     * Is scooter be taken
+     */
     @FXML
     private void takeOne() { take(0); }
 
+    /**
+     * Is scooter be taken
+     */
     @FXML
     private void takeTwo() { take(1); }
 
+    /**
+     * Is scooter be taken
+     */
     @FXML
     private void takeThree() { take(2); }
 
+    /**
+     * Is scooter be taken
+     */
     private void take(int i) {
         Station station = db.stations.get(i);
         if (station.unlocked != -1) {
