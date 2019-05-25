@@ -1,6 +1,10 @@
 import javafx.beans.property.*;
-
 import java.util.Date;
+
+/**
+ * This class is mainly about record scooters' behaviors.
+ * @author Group 87
+ */
 
 public class Record {
     IntegerProperty id;
@@ -8,10 +12,16 @@ public class Record {
     ObjectProperty<Date> end;
     BooleanProperty isExceeded;
 
+    /**
+     * set date to start time of  borrow.
+     */
     public void startRecord() {
         begin.set(new Date());
     }
 
+    /**
+     * Get and set time of end time of borrow
+     */
     public void stopRecord() {
         end.set(new Date());
         long time = (getEnd().getTime() - getBegin().getTime()) / 60000;
@@ -19,21 +29,42 @@ public class Record {
             isExceeded.set(true);
     }
 
+    /**
+     * Get is it exceeded
+     * @return is exceeded or not.
+     */
     boolean getIsExceeded() {
         return isExceeded.get();
     }
 
+    /**
+     * Get id
+     * @return the id
+     */
     public int getId() {
         return id.get();
     }
 
+    /**
+     * Get information of begin
+     * @return information of begin
+     */
     public Date getBegin() {
         return begin.get();
     }
 
+    /**
+     * Get information of end
+     * @return information of end
+     */
     public Date getEnd() {
         return end.get();
     }
+
+    /**
+     * Constructor function of record
+     * @param id users' id
+     */
     public Record(int id) {
         this.id = new SimpleIntegerProperty(id);
         this.begin = new SimpleObjectProperty<>();
@@ -41,6 +72,12 @@ public class Record {
         this.isExceeded = new SimpleBooleanProperty(false);
     }
 
+    /**
+     * Constructor function of record
+     * @param id users' id
+     * @param begin begin time
+     * @param end end time
+     */
     public Record(int id, Date begin, Date end) {
         this.id = new SimpleIntegerProperty(id);
         this.begin = new SimpleObjectProperty<>(begin);
@@ -48,6 +85,10 @@ public class Record {
         this.isExceeded = new SimpleBooleanProperty(false);
     }
 
+    /**
+     * Output data in string
+     * @return data of id, begin time and end time.
+     */
     public String toString() {
         return "id: " + id +
                 " begin: " + begin +
