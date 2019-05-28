@@ -4,10 +4,18 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.apache.commons.validator.routines.EmailValidator;
 
+/**
+ * This class is mainly about register interface and control
+ * @author Group 87
+ */
 public class RegisterController {
+
     @FXML
     private TextField idField, nameField, emailField;
 
+    /**
+     * If user click submit, do these things.
+     */
     @FXML
     private void submit() {
         try {
@@ -38,6 +46,13 @@ public class RegisterController {
         }
     }
 
+    /**
+     * To check is register successful or not
+     * @param id input id
+     * @param name input name
+     * @param email input email
+     * @return register successful or not
+     */
     private boolean register(int id, String name, String email) {
         Database db = Database.getInstance();
         EmailValidator ev = EmailValidator.getInstance();

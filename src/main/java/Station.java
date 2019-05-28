@@ -4,6 +4,10 @@ import javafx.beans.property.StringProperty;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * This class is mainly about control of station.
+ * @author Group 87
+ */
 public class Station {
     Slot[] slots;
     StringProperty LCD;
@@ -11,10 +15,18 @@ public class Station {
     transient Timer timer;
     transient User curUser;
 
+    /**
+     * Set LED
+     * @param LCD the LED would be set
+     */
     public void setLCD(String LCD) {
         this.LCD.set(LCD);
     }
 
+    /**
+     * To check is scooter borrowed or not
+     * @return is borrowed or not
+     */
     boolean borrowScooter() {
         int i = 0;
         for (Slot slot : slots) {
@@ -32,6 +44,10 @@ public class Station {
         return false;
     }
 
+    /**
+     * To check is slot is available.
+     * @return is available or not
+     */
     boolean returnScooter() {
         int i = 0;
         for (Slot slot:slots) {
@@ -49,6 +65,10 @@ public class Station {
         return false;
     }
 
+    /**
+     * This function is about time delay
+     * @param slot slot would be operated
+     */
     private void timeDelay(Slot slot) {
         Database db = Database.getInstance();
         timer = new Timer();
