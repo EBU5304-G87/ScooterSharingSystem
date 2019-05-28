@@ -14,6 +14,8 @@ public class Station {
     int unlocked = -1;
     transient Timer timer;
     transient User curUser;
+    transient Timer flash;
+    transient StringProperty countdown;
 
     /**
      * Set LED
@@ -73,15 +75,22 @@ public class Station {
         Database db = Database.getInstance();
         timer = new Timer();
         timer.schedule(new TimerTask() {
+            int count = 4;
             public void run() {
-                slot.lock.set(true);
-                slot.light.set(false);
-                Platform.runLater(() -> setLCD("Locked"));
-                unlocked = -1;
-                db.save();
-                timer.cancel();
-                timer.purge();
+                if (count > 0) {
+                    slot.light.set(!slot.light.get());
+                    Platform.runLater(() -> setLCD(Integer.toString(count)));
+                    count--;
+                } else {
+                    slot.lock.set(true);
+                    slot.light.set(false);
+                    Platform.runLater(() -> setLCD("Locked"));
+                    unlocked = -1;
+                    db.save();
+                    this.cancel();
+                    timer.purge();
+                }
             }
-        }, 6 * 1000);
+        }, 1000, 1000);
     }
 }
