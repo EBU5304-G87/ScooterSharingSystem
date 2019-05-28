@@ -10,18 +10,26 @@ public class RegisterController {
 
     @FXML
     private void submit() {
-        if (register(Integer.parseInt(idField.getText()), nameField.getText(), emailField.getText())) {
-            idField.setText("");
-            nameField.setText("");
-            emailField.setText("");
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Information Dialog");
-            alert.setHeaderText("Look, an Information Dialog");
-            alert.setContentText("I have a great message for you!");
-            alert.showAndWait();
-            Stage stage = ((Stage)idField.getScene().getWindow());
-            stage.close();
-        } else {
+        try {
+            if (register(Integer.parseInt(idField.getText()), nameField.getText(), emailField.getText())) {
+                idField.setText("");
+                nameField.setText("");
+                emailField.setText("");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Dialog");
+                alert.setHeaderText("Look, an Information Dialog");
+                alert.setContentText("I have a great message for you!");
+                alert.showAndWait();
+                Stage stage = ((Stage) idField.getScene().getWindow());
+                stage.close();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Invalid Information");
+                alert.setHeaderText("Invalid");
+                alert.setContentText("Ooops, there was an error!");
+                alert.showAndWait();
+            }
+        } catch (NumberFormatException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Invalid Information");
             alert.setHeaderText("Invalid");

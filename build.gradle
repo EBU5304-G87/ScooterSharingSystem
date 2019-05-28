@@ -6,7 +6,7 @@ plugins {
 
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 1.8
+sourceCompatibility = 1.11
 
 repositories {
     mavenCentral()
@@ -18,7 +18,6 @@ dependencies {
     compile 'org.hildan.fxgson:fx-gson:3.1.2'
     compile group: 'commons-validator', name: 'commons-validator', version: '1.6'
     compile group: 'com.fazecast', name: 'jSerialComm', version: '2.5.1'
-
 }
 
 javafx {

@@ -7,7 +7,7 @@ import java.util.Arrays;
 public final class ReceiveListener implements SerialPortMessageListener {
 
     @Override
-    public byte[] getMessageDelimiter() { return new byte[] { (byte)0x2E }; }
+    public byte[] getMessageDelimiter() { return new byte[] { (byte)'.' }; }
 
     @Override
     public boolean delimiterIndicatesEndOfMessage() { return true; }
@@ -18,6 +18,11 @@ public final class ReceiveListener implements SerialPortMessageListener {
     @Override
     public void serialEvent(SerialPortEvent event) {
         byte[] delimitedMessage = event.getReceivedData();
-        System.out.println("Received the following delimited message: " + Arrays.toString(delimitedMessage));
+        if (delimitedMessage.length == 10) {
+
+        } else if (delimitedMessage.length == 2) {
+        }
+        for (byte b : delimitedMessage) System.out.print((char) b);
+        System.out.println();
     }
 }
