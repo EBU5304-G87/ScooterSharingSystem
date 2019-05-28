@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="RegisterController">
+<AnchorPane prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ScooterSharingSystem.controllers.RegisterController">
    <children>
       <Button layoutX="171.0" layoutY="159.0" mnemonicParsing="false" onAction="#submit" text="Submit" AnchorPane.bottomAnchor="10.0" />
       <Label layoutX="93.0" layoutY="35.0" text="ID" AnchorPane.rightAnchor="280.0" AnchorPane.topAnchor="20.0">

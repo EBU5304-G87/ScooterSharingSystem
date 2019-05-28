@@ -1,3 +1,6 @@
+package ScooterSharingSystem.models;
+
+import ScooterSharingSystem.database.Database;
 import javafx.application.Platform;
 import javafx.beans.property.StringProperty;
 
@@ -9,13 +12,13 @@ import java.util.TimerTask;
  * @author Group 87
  */
 public class Station {
-    Slot[] slots;
-    StringProperty LCD;
-    int unlocked = -1;
-    transient Timer timer;
-    transient User curUser;
-    transient Timer flash;
-    transient StringProperty countdown;
+    public Slot[] slots;
+    public StringProperty LCD;
+    public int unlocked = -1;
+    public transient Timer timer;
+    public transient User curUser;
+    public transient Timer flash;
+    public transient StringProperty countdown;
 
     /**
      * Set LED
@@ -29,7 +32,7 @@ public class Station {
      * To check is scooter borrowed or not
      * @return is borrowed or not
      */
-    boolean borrowScooter() {
+    public boolean borrowScooter() {
         int i = 0;
         for (Slot slot : slots) {
             if ((slot.slot).get() && (slot.lock).get()) {
@@ -50,7 +53,7 @@ public class Station {
      * To check is slot is available.
      * @return is available or not
      */
-    boolean returnScooter() {
+    public boolean returnScooter() {
         int i = 0;
         for (Slot slot:slots) {
             if (!slot.slot.get() && (slot.lock).get()) {

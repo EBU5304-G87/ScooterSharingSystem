@@ -1,5 +1,10 @@
+package ScooterSharingSystem.database;
+
+import ScooterSharingSystem.models.Record;
+import ScooterSharingSystem.models.SchoolUser;
+import ScooterSharingSystem.models.Station;
+import ScooterSharingSystem.models.User;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,12 +18,12 @@ import java.nio.file.Files;
 import java.util.*;
 
 public class Database {
-    SchoolUser[] schoolUsers;
-    List<Station> stations;
-    List<User> users;
-    List<Record> records;
-    ObservableList<User> userData;
-    ObservableList<Record> recordData;
+    public SchoolUser[] schoolUsers;
+    public List<Station> stations;
+    public List<User> users;
+    public List<Record> records;
+    public ObservableList<User> userData;
+    public ObservableList<Record> recordData;
     private Gson gsonIn;
     private Gson fxGsonIn;
     private Gson fxGsonOut;
@@ -26,7 +31,7 @@ public class Database {
     public static class DatabaseHolder {
         public static final Database INSTANCE = new Database();
     }
-    Database() {
+    private Database() {
         gsonIn = new Gson();
         fxGsonIn = FxGson.create();
         fxGsonOut = FxGson.coreBuilder().setPrettyPrinting().create();
@@ -51,9 +56,6 @@ public class Database {
         writeUsers();
     }
 
-    public void clearUserData() {
-        userData.removeAll();
-    }
     private void writeStations() {
         writeFile("Stations", fxGsonOut.toJson(stations));
     }
@@ -102,14 +104,14 @@ public class Database {
                 cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR);
     }
 
-    List<Record> getUserRecord(int id) {
+    public List<Record> getUserRecord(int id) {
         List<Record> list = new ArrayList<>();
         for (Record r : records)
             if (r.getId() == id) list.add(r);
         return list;
     }
 
-    boolean isTotalTimeExceeded(int id) {
+    public boolean isTotalTimeExceeded(int id) {
         Date today = new Date();
         long totalTime = 0;
         List<Record> userList = getUserRecord(id);
@@ -120,5 +122,4 @@ public class Database {
         }
         return totalTime > 120;
     }
-
 }

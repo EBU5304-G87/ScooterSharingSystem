@@ -1,3 +1,9 @@
+package ScooterSharingSystem.controllers;
+
+import ScooterSharingSystem.database.Database;
+import ScooterSharingSystem.models.Record;
+import ScooterSharingSystem.models.Station;
+import ScooterSharingSystem.models.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,8 +13,6 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.text.NumberFormat;
-import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -101,7 +105,7 @@ public class MainController {
     @FXML
     public void openRegWindow(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("Register.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/Register.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Register");
             stage.setScene(new Scene(root, 400, 200));

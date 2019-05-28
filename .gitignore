@@ -76,7 +76,7 @@ local.properties
 
 .idea/
 
-# User-specific stuff
+# ScooterSharingSystem.models.User-specific stuff
 .idea/**/workspace.xml
 .idea/**/tasks.xml
 .idea/**/usage.statistics.xml

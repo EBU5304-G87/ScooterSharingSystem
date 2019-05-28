@@ -1,3 +1,5 @@
+package ScooterSharingSystem;
+
 import static org.junit.Assert.*;
 
 /**

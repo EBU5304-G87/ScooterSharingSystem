@@ -1,3 +1,5 @@
+package ScooterSharingSystem.models;
+
 import javafx.beans.property.BooleanProperty;
 
 /**
@@ -5,9 +7,9 @@ import javafx.beans.property.BooleanProperty;
  * @author Group 87
  */
 public class Slot {
-    BooleanProperty slot;
-    BooleanProperty lock;
-    BooleanProperty light;
+    public BooleanProperty slot;
+    public BooleanProperty lock;
+    public BooleanProperty light;
 
     /**
      * To check is slot is slot
@@ -62,7 +64,7 @@ public class Slot {
      * @param i the ith data
      * @return data we need
      */
-    BooleanProperty getValue(int i) {
+    public BooleanProperty getValue(int i) {
         switch (i) {
             case 0:
                 return light;

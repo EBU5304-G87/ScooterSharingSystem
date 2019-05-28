@@ -1,3 +1,5 @@
+package ScooterSharingSystem;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -25,7 +27,7 @@ public class MainApp extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("MainApp.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/MainApp.fxml"));
         primaryStage.setTitle("Scooter Sharing System");
         primaryStage.setScene(new Scene(root, 1080, 720));
         primaryStage.show();

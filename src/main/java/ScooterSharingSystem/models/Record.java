@@ -1,3 +1,5 @@
+package ScooterSharingSystem.models;
+
 import javafx.beans.property.*;
 import java.util.Date;
 
@@ -7,9 +9,9 @@ import java.util.Date;
  */
 
 public class Record {
-    IntegerProperty id;
-    ObjectProperty<Date> begin;
-    ObjectProperty<Date> end;
+    public IntegerProperty id;
+    public ObjectProperty<Date> begin;
+    public ObjectProperty<Date> end;
     BooleanProperty isExceeded;
 
     /**
@@ -33,7 +35,7 @@ public class Record {
      * Get is it exceeded
      * @return is exceeded or not.
      */
-    boolean getIsExceeded() {
+    public boolean getIsExceeded() {
         return isExceeded.get();
     }
 

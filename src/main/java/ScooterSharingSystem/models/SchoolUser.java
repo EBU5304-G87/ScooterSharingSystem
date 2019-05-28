@@ -1,3 +1,5 @@
+package ScooterSharingSystem.models;
+
 /**
  * This class is about control of school user
  * @author Group 87.

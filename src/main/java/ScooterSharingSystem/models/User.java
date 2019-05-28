@@ -1,3 +1,5 @@
+package ScooterSharingSystem.models;
+
 import javafx.beans.property.*;
 
 /**
@@ -5,11 +7,11 @@ import javafx.beans.property.*;
  * @author Group 87
  */
 public class User {
-    BooleanProperty violation;
-    BooleanProperty borrowed;
-    IntegerProperty id;
-    StringProperty name;
-    StringProperty email;
+    public BooleanProperty violation;
+    public BooleanProperty borrowed;
+    public IntegerProperty id;
+    public StringProperty name;
+    public StringProperty email;
 
     /**
      * To set the ini value.

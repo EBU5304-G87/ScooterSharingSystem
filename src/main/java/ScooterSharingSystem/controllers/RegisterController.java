@@ -1,3 +1,7 @@
+package ScooterSharingSystem.controllers;
+
+import ScooterSharingSystem.database.Database;
+import ScooterSharingSystem.models.SchoolUser;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
