@@ -2,10 +2,11 @@
 Coursework for EBU5304 By Group 87
 ## Run
 1. Unzip `release-universal.zip`
-2. In command line, `cd` to the unzipped directory
-3. For Windows users, type `launch-windows.bat` and press enter;
-   For macOS users, type `./launch-mac.sh` and press enter;
-   For GNU/Linux users, type `./launch-linux.sh` and press enter.
+2. In command line, `cd` to the root directory
+3. - For Windows users, type `launch-windows.bat` and press enter;
+   - For macOS users, type `./launch-mac.sh` and press enter;
+   - For GNU/Linux users, type `./launch-linux.sh` and press enter.
+   - **ATTENTION: THE PATH TO THE ROOT DIRECTORY MUST NOT CONTAIN ANY SPACE OR ANY NON-ASCII CHARACTER.**
    
 ## Usage
 ### Station
