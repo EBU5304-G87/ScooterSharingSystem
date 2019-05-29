@@ -83,7 +83,7 @@ public class Database {
 
     private void writeFile(String filename, String content) {
         try {
-            PrintWriter out = new PrintWriter("src/data/" + filename + ".json");
+            PrintWriter out = new PrintWriter("data" + File.separator + filename + ".json");
             out.print(content);
             out.close();
         } catch (FileNotFoundException e) {
@@ -91,7 +91,7 @@ public class Database {
         }
     }
     private String readFile(String filename) throws IOException {
-        return new Scanner(new File("src/data/" + filename + ".json")).useDelimiter("\\Z").next();
+        return new Scanner(new File("data" + File.separator + filename + ".json")).useDelimiter("\\Z").next();
     }
 
     private boolean isSameDay(Date date1, Date date2){
