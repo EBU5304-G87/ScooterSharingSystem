@@ -57,7 +57,7 @@ public class RegisterController {
      * @param email input email
      * @return register successful or not
      */
-    private boolean register(int id, String name, String email) {
+    protected boolean register(int id, String name, String email) {
         Database db = Database.getInstance();
         EmailValidator ev = EmailValidator.getInstance();
         if (!ev.isValid(email) || id / 100000000 == 0)

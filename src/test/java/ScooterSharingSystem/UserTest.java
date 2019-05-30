@@ -25,6 +25,8 @@ public class UserTest {
      */
     @Test
     public void getName() {
+        User usr = new User(123456789, "Dan Ho", "igaryhe@gmail.com");
+        assertEquals(usr.getName(), "Dan Ho");
     }
 
     /**
@@ -32,19 +34,8 @@ public class UserTest {
      */
     @Test
     public void getEmail() {
+        User usr = new User(123456789, "Dan Ho", "igaryhe@gmail.com");
+        assertEquals(usr.getEmail(), "igaryhe@gmail.com");
     }
 
-    /**
-     * Test is violation function
-     */
-    @Test
-    public void isViolation() {
-    }
-
-    /**
-     * Test set violation function
-     */
-    @Test
-    public void setViolation() {
-    }
 }
