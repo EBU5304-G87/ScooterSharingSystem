@@ -18,13 +18,11 @@ public class DatabaseTest {
     @Test
     public void testSingleton() {
         Database db = Database.getInstance();
-        assertEquals("garyhe@gmail.com", db.schoolUsers[0].getEmail());
-        db.stations.get(0).setLCD("haha233");
-        db.save();
+        assertEquals("igaryhe@gmail.com", db.schoolUsers[0].getEmail());
     }
 
     /**
-     * To test is same day method(Succssful)
+     * To test is same day method(Successful)
      */
     @Test
     public void testIsSameDay(){
@@ -33,7 +31,7 @@ public class DatabaseTest {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(now);
         boolean temp=db.isSameDay(now,now);
-        assertEquals(true,temp);
+        assertTrue(temp);
     }
 
     /**
@@ -43,13 +41,13 @@ public class DatabaseTest {
     public void testIsSameDayerror() throws ParseException {
         Database db=new Database();
         Date now =new Date();
-        Date before=new Date();
+        Date before;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         before=sdf.parse("2019-01-01 20:11:11");
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(now);
         boolean temp=db.isSameDay(before,now);
-        assertEquals(true,temp);
+        assertFalse(temp);
     }
 
     /**
@@ -58,6 +56,6 @@ public class DatabaseTest {
     @Test
     public void testisTotalTimeExceeded(){
         Database db=new Database();
-        assertEquals(false,db.isTotalTimeExceeded(123456789));
+        assertFalse(db.isTotalTimeExceeded(123456789));
     }
 }

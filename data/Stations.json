@@ -42,35 +42,35 @@
         "light": false
       }
     ],
-    "LCD": "Locked",
+    "LCD": "No slot available",
     "unlocked": -1
   },
   {
     "slots": [
       {
         "slot": true,
-        "lock": true,
-        "light": false
+        "lock": false,
+        "light": true
       },
       {
         "slot": true,
-        "lock": true,
-        "light": false
+        "lock": false,
+        "light": true
       },
       {
         "slot": true,
-        "lock": true,
-        "light": false
+        "lock": false,
+        "light": true
       },
       {
         "slot": true,
-        "lock": true,
-        "light": false
+        "lock": false,
+        "light": true
       },
       {
         "slot": true,
-        "lock": true,
-        "light": false
+        "lock": false,
+        "light": true
       },
       {
         "slot": true,
@@ -88,8 +88,8 @@
         "light": false
       }
     ],
-    "LCD": "hh",
-    "unlocked": -1
+    "LCD": "Slot 5 unlocked",
+    "unlocked": 4
   },
   {
     "slots": [

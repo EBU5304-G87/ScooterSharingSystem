@@ -18,7 +18,7 @@ public class StationTest {
     public void testBorrowScooter(){
         Database db=Database.getInstance();
         Station st=db.stations.get(1);
-        assertEquals(true,st.borrowScooter());
+        assertTrue(st.borrowScooter());
     }
 
     /**
@@ -28,6 +28,6 @@ public class StationTest {
     public void testReturnScooter(){
         Database db=Database.getInstance();
         Station st=db.stations.get(0);
-        assertEquals(true,st.returnScooter());
+        assertFalse(st.returnScooter());
     }
 }

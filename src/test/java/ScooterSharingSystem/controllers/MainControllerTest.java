@@ -1,4 +1,4 @@
-package ScooterSharingSystem.controllers;;
+package ScooterSharingSystem.controllers;
 
 import org.junit.Test;
 
@@ -20,13 +20,13 @@ public class MainControllerTest {
      */
     @Test
     public void testIsLatestWeek(){
-        MainController mc=new MainController();
-        Date now =new Date();
+        MainController mc = new MainController();
+        Date now = new Date();
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(now);
-        boolean temp=mc.isLatestWeek(now,now);
-        assertEquals(true,temp);
+        boolean temp = mc.isLatestWeek(now,now);
+        assertTrue(temp);
     }
 
     /**
@@ -35,13 +35,12 @@ public class MainControllerTest {
     @Test
     public void testIsLatestWeekerror() throws ParseException {
         MainController mc=new MainController();
-        Date now =new Date();
-        Date before=new Date();
+        Date now = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        before=sdf.parse("2019-01-01 20:11:11");
+        Date before = sdf.parse("2019-01-01 20:11:11");
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(now);
-        boolean temp=mc.isLatestWeek(before,now);
-        assertEquals(true,temp);
+        boolean temp = mc.isLatestWeek(before,now);
+        assertFalse(temp);
     }
 }

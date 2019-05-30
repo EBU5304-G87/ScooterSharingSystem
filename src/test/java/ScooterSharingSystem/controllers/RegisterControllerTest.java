@@ -1,4 +1,4 @@
-package ScooterSharingSystem.controllers;;
+package ScooterSharingSystem.controllers;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -16,7 +16,7 @@ public class RegisterControllerTest {
     public void testRegister(){
         RegisterController rc=new RegisterController();
         boolean temp=rc.register(123456789,"Dan Ho","igaryhe@gmail.com");
-        assertEquals(true,temp);
+        assertTrue(temp);
     }
 
     /**
@@ -26,36 +26,36 @@ public class RegisterControllerTest {
     public void testRegisterEmail(){
         RegisterController rc=new RegisterController();
         boolean temp=rc.register(123456789,"Dan Ho","not a email");
-        assertEquals(true,temp);
+        assertFalse(temp);
     }
 
     /**
      * To test register is successful or not(Error format in id)
      */
     @Test
-    public void testRegisterid(){
+    public void testRegisterId(){
         RegisterController rc=new RegisterController();
         boolean temp=rc.register(1234,"Dan Ho","igaryhe@gmail.com");
-        assertEquals(true,temp);
+        assertFalse(temp);
     }
 
     /**
      * To test register is successful or not(No information in database)
      */
     @Test
-    public void testRegisterinfo(){
+    public void testRegisterInfo(){
         RegisterController rc=new RegisterController();
         boolean temp=rc.register(987654321,"Xiao Ming","xiaoming@gmail.com");
-        assertEquals(true,temp);
+        assertFalse(temp);
     }
 
     /**
      * To test register is successful or not(A part of information in database, name error)
      */
     @Test
-    public void testRegisterpartinfo(){
+    public void testRegisterPartInfo(){
         RegisterController rc=new RegisterController();
         boolean temp=rc.register(123456789,"Xiao Ming","igaryhe@gmail.com");
-        assertEquals(true,temp);
+        assertFalse(temp);
     }
 }
