@@ -31,7 +31,7 @@ public class Database {
     public static class DatabaseHolder {
         public static final Database INSTANCE = new Database();
     }
-    private Database() {
+    protected Database() {
         gsonIn = new Gson();
         fxGsonIn = FxGson.create();
         fxGsonOut = FxGson.coreBuilder().setPrettyPrinting().create();
@@ -94,7 +94,7 @@ public class Database {
         return new Scanner(new File("data" + File.separator + filename + ".json")).useDelimiter("\\Z").next();
     }
 
-    private boolean isSameDay(Date date1, Date date2){
+    protected boolean isSameDay(Date date1, Date date2){
         Calendar cal1 = Calendar.getInstance();
         Calendar cal2 = Calendar.getInstance();
         cal1.setTime(date1);
