@@ -1,12 +1,17 @@
 # ScooterSharingSystem
 Coursework for EBU5304 By Group 87
-## Run
+## Requirement
+- Required JDK version: 11+
+## Compile & Run
 **ATTENTION: THE PATH TO THE ROOT DIRECTORY MUST NOT CONTAIN ANY SPACE OR ANY NON-ASCII CHARACTER.**
-1. Unzip `release-universal.zip`
-2. In command line, `cd` to the root directory
-3. - For Windows users, type `scripts/compile-win.bat` and press enter.  
-     After that, type `scripts/launch-win.bat` and press enter.
-   - For macOS users, type `./scripts/compile-mac.sh` and press enter.  
-     After that, type `./scripts/launch-mac.sh` and press enter.
-   - For GNU/Linux users, type `./scripts/compile-linux.sh` and press enter.  
-     After that, type `./scripts/launch-linux.sh` and press enter.
+- For Windows users: `gradlew.bat tasks run`
+- For macOS and GNU/Linux users: `./gradlew tasks run`
+The generated classes would be available in `build/classes/java/main`
+## Generate JavaDoc
+- For Windows users: `gradlew.bat tasks javadoc`
+- For macOS and GNU/Linux users: `./gradlew tasks run`
+The generated JavaDoc would be available in `build/docs/javadoc`
+## Test
+- For Windows users: `gradlew.bat tasks run`
+- For macOS and GNU/Linux users: `./gradlew tasks run`
+The generated classes would be available in `build/classes/java/test`
