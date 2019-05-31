@@ -1,4 +1,9 @@
 # Usage
+## Files
+- `data/Records.json` stores all the records.
+- `data/Stations.json` stores all the state of three stations.
+- `data/Users.json` stores all the info of registered users.
+- `src/main/resources/SchoolUsers.json` stores all the user info in school's database. Only user id and name in this file can register.
 ## Station
 - The upper part is the simulation of the stations, while each tab represents one station.
 - In each station, there are eight slots and an LCD screen used to output useful information. Besides, there is an RFID card reader, where users can swipe their card and start the borrow/return process.
