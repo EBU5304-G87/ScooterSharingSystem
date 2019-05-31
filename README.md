@@ -15,5 +15,5 @@ The generated classes would be available in `build/classes/java/main`
 
 The generated JavaDoc would be available in `build/docs/javadoc`
 ## Test
-- For Windows users: `gradlew.bat test`
+- For Windows users: `gradlew.bat clean test`
 - For macOS and GNU/Linux users: `./gradlew clean test`
