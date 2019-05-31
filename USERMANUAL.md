@@ -13,6 +13,6 @@
 ## Administration
 - The below part is the administration interface.
 - `List All Users` and `List Violated Users` will show the result in the left panel; `Generate Report` will show the result on the right panel.
-- When clicking `Register`, it will open a new window, asking the user to provide information: ID, name and email address. Notice: ID needs to be 9 digits, and email needs to be in a validating form. Besides, only data in `resources/SchoolUsers.json` can register.
+- When clicking `Register`, it will open a new window, asking the user to provide information: ID, name and email address. Notice: ID needs to be 9 digits, and email needs to be in a validating form. Besides, only data in `src/main/resources/SchoolUsers.json` can register.
 - Input ID in the input box and click `Generate Report`, it will generate the user's weekly usage in the right panel.
 - If you've listed "all violated users", after selecting one of them, you can click `Change State` to change this user's violation state, assuming they've paid the fine.
