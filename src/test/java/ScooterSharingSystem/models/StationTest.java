@@ -1,4 +1,4 @@
-package ScooterSharingSystem;
+package ScooterSharingSystem.models;
 
 import ScooterSharingSystem.database.Database;
 import ScooterSharingSystem.models.Station;
@@ -15,9 +15,9 @@ public class StationTest {
      * To test borrowScooter method
      */
     @Test
-    public void testBorrowScooter(){
+    public void borrowCheckTest(){
         Database db=Database.getInstance();
-        Station st=db.stations.get(1);
+        Station st=db.stations.get(0);
         assertTrue(st.borrowScooter());
     }
 
@@ -25,7 +25,7 @@ public class StationTest {
      * To test returnScooter method
      */
     @Test
-    public void testReturnScooter(){
+    public void returnCheckTest(){
         Database db=Database.getInstance();
         Station st=db.stations.get(0);
         assertFalse(st.returnScooter());

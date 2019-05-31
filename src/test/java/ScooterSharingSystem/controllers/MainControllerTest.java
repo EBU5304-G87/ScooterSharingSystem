@@ -33,7 +33,7 @@ public class MainControllerTest {
      * To test is the day is latest week(Error)
      */
     @Test
-    public void testIsLatestWeekerror() throws ParseException {
+    public void testIsLatestWeekError() throws ParseException {
         MainController mc=new MainController();
         Date now = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");

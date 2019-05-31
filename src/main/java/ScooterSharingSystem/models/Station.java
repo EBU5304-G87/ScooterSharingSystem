@@ -17,8 +17,6 @@ public class Station {
     public int unlocked = -1;
     public transient Timer timer;
     public transient User curUser;
-    public transient Timer flash;
-    public transient StringProperty countdown;
 
     /**
      * Set LED

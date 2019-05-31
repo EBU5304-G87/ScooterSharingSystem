@@ -49,28 +49,28 @@
     "slots": [
       {
         "slot": true,
-        "lock": false,
-        "light": true
+        "lock": true,
+        "light": false
       },
       {
         "slot": true,
-        "lock": false,
-        "light": true
+        "lock": true,
+        "light": false
       },
       {
         "slot": true,
-        "lock": false,
-        "light": true
+        "lock": true,
+        "light": false
       },
       {
         "slot": true,
-        "lock": false,
-        "light": true
+        "lock": true,
+        "light": false
       },
       {
         "slot": true,
-        "lock": false,
-        "light": true
+        "lock": true,
+        "light": false
       },
       {
         "slot": true,
@@ -88,8 +88,8 @@
         "light": false
       }
     ],
-    "LCD": "Slot 5 unlocked",
-    "unlocked": 4
+    "LCD": "No scooter available",
+    "unlocked": -1
   },
   {
     "slots": [

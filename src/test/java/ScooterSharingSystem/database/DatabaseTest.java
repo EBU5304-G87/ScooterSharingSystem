@@ -16,7 +16,7 @@ public class DatabaseTest {
      * To test add information.
      */
     @Test
-    public void testSingleton() {
+    public void singletonTest() {
         Database db = Database.getInstance();
         assertEquals("igaryhe@gmail.com", db.schoolUsers[0].getEmail());
     }
@@ -25,12 +25,12 @@ public class DatabaseTest {
      * To test is same day method(Successful)
      */
     @Test
-    public void testIsSameDay(){
-        Database db=new Database();
-        Date now =new Date();
+    public void isSameDayTest(){
+        Database db=Database.getInstance();
+        Date now = new Date();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(now);
-        boolean temp=db.isSameDay(now,now);
+        boolean temp = db.isSameDay(now,now);
         assertTrue(temp);
     }
 
@@ -38,12 +38,12 @@ public class DatabaseTest {
      * To test is same day method(Error)
      */
     @Test
-    public void testIsSameDayerror() throws ParseException {
-        Database db=new Database();
-        Date now =new Date();
+    public void isSameDayErrorTest() throws ParseException {
+        Database db = Database.getInstance();
+        Date now = new Date();
         Date before;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        before=sdf.parse("2019-01-01 20:11:11");
+        before = sdf.parse("2019-01-01 20:11:11");
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(now);
         boolean temp=db.isSameDay(before,now);
@@ -54,8 +54,8 @@ public class DatabaseTest {
      * To test is total time exceeded
      */
     @Test
-    public void testisTotalTimeExceeded(){
-        Database db=new Database();
+    public void isTotalTimeExceededTest(){
+        Database db = new Database();
         assertFalse(db.isTotalTimeExceeded(123456789));
     }
 }
