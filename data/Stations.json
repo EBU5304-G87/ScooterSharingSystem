@@ -42,8 +42,33 @@
         "light": false
       }
     ],
-    "LCD": "No slot available",
-    "unlocked": -1
+    "LCD": "Locked",
+    "unlocked": -1,
+    "comPort": {
+      "portHandle": -1,
+      "baudRate": 9600,
+      "dataBits": 8,
+      "stopBits": 1,
+      "parity": 0,
+      "eventFlags": 0,
+      "timeoutMode": 0,
+      "readTimeout": 0,
+      "writeTimeout": 0,
+      "flowControl": 0,
+      "sendDeviceQueueSize": 4096,
+      "receiveDeviceQueueSize": 4096,
+      "inputStream": null,
+      "outputStream": null,
+      "userDataListener": null,
+      "serialEventListener": null,
+      "comPort": "/dev/tty.SLAB_USBtoUART",
+      "friendlyName": "User-Specified Port",
+      "portDescription": "User-Specified Port",
+      "isOpened": false,
+      "disableConfig": false,
+      "isRtsEnabled": true,
+      "isDtrEnabled": true
+    }
   },
   {
     "slots": [
@@ -89,7 +114,32 @@
       }
     ],
     "LCD": "No scooter available",
-    "unlocked": -1
+    "unlocked": -1,
+    "comPort": {
+      "portHandle": -1,
+      "baudRate": 9600,
+      "dataBits": 8,
+      "stopBits": 1,
+      "parity": 0,
+      "eventFlags": 0,
+      "timeoutMode": 0,
+      "readTimeout": 0,
+      "writeTimeout": 0,
+      "flowControl": 0,
+      "sendDeviceQueueSize": 4096,
+      "receiveDeviceQueueSize": 4096,
+      "inputStream": null,
+      "outputStream": null,
+      "userDataListener": null,
+      "serialEventListener": null,
+      "comPort": "/dev/tty.SLAB_USBtoUART",
+      "friendlyName": "User-Specified Port",
+      "portDescription": "User-Specified Port",
+      "isOpened": false,
+      "disableConfig": false,
+      "isRtsEnabled": true,
+      "isDtrEnabled": true
+    }
   },
   {
     "slots": [
@@ -135,6 +185,31 @@
       }
     ],
     "LCD": "LCD23333",
-    "unlocked": -1
+    "unlocked": -1,
+    "comPort": {
+      "portHandle": -1,
+      "baudRate": 9600,
+      "dataBits": 8,
+      "stopBits": 1,
+      "parity": 0,
+      "eventFlags": 0,
+      "timeoutMode": 0,
+      "readTimeout": 0,
+      "writeTimeout": 0,
+      "flowControl": 0,
+      "sendDeviceQueueSize": 4096,
+      "receiveDeviceQueueSize": 4096,
+      "inputStream": null,
+      "outputStream": null,
+      "userDataListener": null,
+      "serialEventListener": null,
+      "comPort": "/dev/tty.SLAB_USBtoUART",
+      "friendlyName": "User-Specified Port",
+      "portDescription": "User-Specified Port",
+      "isOpened": false,
+      "disableConfig": false,
+      "isRtsEnabled": true,
+      "isDtrEnabled": true
+    }
   }
 ]

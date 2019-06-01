@@ -11,7 +11,6 @@ public class WriteListenerTest {
     @Test
     public void test() {
         SerialPort comPort = SerialPort.getCommPort("/dev/tty.SLAB_USBtoUART");
-        WriteListener write = new WriteListener();
         ReceiveListener receive = new ReceiveListener();
         comPort.openPort();
         comPort.addDataListener(receive);

@@ -9,7 +9,6 @@ import com.google.gson.reflect.TypeToken;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.hildan.fxgson.FxGson;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -121,5 +120,53 @@ public class Database {
              }
         }
         return totalTime > 120;
+    }
+
+    public void unlock(int i, int id) {
+        Station station = stations.get(i);
+        for (User user : users) {
+            if (user.getId() == id) {
+                if (!user.isViolation()) {
+                    if (!user.isBorrowed()) {
+                        if (station.borrowScooter())
+                            station.curUser = user;
+                    } else {
+                        if (station.returnScooter())
+                            station.curUser = user;
+                    }
+                } else {
+                    station.setLCD("You need to pay the fine");
+                }
+                return;
+            }
+        }
+        stations.get(i).setLCD("Invalid id");
+    }
+
+    public void take(int i) {
+        Station station = stations.get(i);
+        if (station.unlocked != -1) {
+            if (station.slots[station.unlocked].slot.get()) {
+                // take the scooter
+                station.slots[station.unlocked].slot.set(false);
+                station.curUser.setBorrowed(true);
+                records.add(new Record(station.curUser.getId(), new Date(), new Date(0)));
+            } else {
+                // return the scooter
+                station.slots[station.unlocked].slot.set(true);
+                List<Record> records = getUserRecord(station.curUser.getId());
+                Record r = records.get(records.size() - 1);
+                r.stopRecord();
+                if (r.getIsExceeded() || isTotalTimeExceeded(station.curUser.getId()))
+                    station.curUser.setViolation(true);
+                station.curUser.setBorrowed(false);
+            }
+            station.timer.cancel();
+            station.slots[station.unlocked].light.set(false);
+            station.slots[station.unlocked].lock.set(true);
+            station.setLCD("Locked");
+            station.unlocked = -1;
+            save();
+        }
     }
 }

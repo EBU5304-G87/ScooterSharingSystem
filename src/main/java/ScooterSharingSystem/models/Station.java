@@ -1,6 +1,8 @@
 package ScooterSharingSystem.models;
 
 import ScooterSharingSystem.database.Database;
+import ScooterSharingSystem.listeners.ReceiveListener;
+import com.fazecast.jSerialComm.SerialPort;
 import javafx.application.Platform;
 import javafx.beans.property.StringProperty;
 
@@ -17,13 +19,21 @@ public class Station {
     public int unlocked = -1;
     public transient Timer timer;
     public transient User curUser;
+    private SerialPort comPort = SerialPort.getCommPort("/dev/tty.SLAB_USBtoUART");
 
+    Station() {
+        ReceiveListener receive = new ReceiveListener();
+        comPort.openPort();
+        comPort.addDataListener(receive);
+    }
     /**
      * Set LED
      * @param LCD the LED would be set
      */
     public void setLCD(String LCD) {
         this.LCD.set(LCD);
+        String send = LCD + '.';
+        comPort.writeBytes(send.getBytes(), send.length());
     }
 
     /**
@@ -32,8 +42,12 @@ public class Station {
      */
     public boolean borrowScooter() {
         int i = 0;
+        byte[] lights = {0b01111111, (byte) 0b10111111, (byte) 0b11011111, (byte) 0b11101111, (byte) 0b11110111,
+                (byte) 0b11111011, (byte) 0b11111101, (byte) 0b11111110};
         for (Slot slot : slots) {
             if ((slot.slot).get() && (slot.lock).get()) {
+                // byte[] send = {lights[i], (byte)'.'};
+                // comPort.writeBytes(send, 2);
                 LCD.set("Slot " + (i + 1) + " unlocked");
                 slot.lock.set(false);
                 slot.light.set(true);
@@ -76,22 +90,15 @@ public class Station {
         Database db = Database.getInstance();
         timer = new Timer();
         timer.schedule(new TimerTask() {
-            int count = 4;
             public void run() {
-                if (count > 0) {
-                    slot.light.set(!slot.light.get());
-                    Platform.runLater(() -> setLCD(Integer.toString(count)));
-                    count--;
-                } else {
-                    slot.lock.set(true);
-                    slot.light.set(false);
-                    Platform.runLater(() -> setLCD("Locked"));
-                    unlocked = -1;
-                    db.save();
-                    this.cancel();
-                    timer.purge();
+                slot.lock.set(true);
+                slot.light.set(false);
+                Platform.runLater(() -> setLCD("Locked"));
+                unlocked = -1;
+                db.save();
+                timer.cancel();
+                timer.purge();
                 }
-            }
-        }, 1000, 1000);
+        }, 6000);
     }
 }

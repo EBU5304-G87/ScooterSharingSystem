@@ -1,14 +1,22 @@
 package ScooterSharingSystem.listeners;
 
+import ScooterSharingSystem.database.Database;
 import com.fazecast.jSerialComm.SerialPort;
 import com.fazecast.jSerialComm.SerialPortEvent;
 import com.fazecast.jSerialComm.SerialPortMessageListener;
+
+import java.util.Arrays;
 
 /**
  * This class is about receive listener.
  * @author Group 87
  */
 public final class ReceiveListener implements SerialPortMessageListener {
+    Database db;
+
+    public ReceiveListener() {
+        db = Database.getInstance();
+    }
 
     @Override
     public byte[] getMessageDelimiter() { return new byte[] { (byte)'.' }; }
@@ -23,9 +31,15 @@ public final class ReceiveListener implements SerialPortMessageListener {
     public void serialEvent(SerialPortEvent event) {
         byte[] delimitedMessage = event.getReceivedData();
         if (delimitedMessage.length == 10) {
-
+            byte[] b = Arrays.copyOf(delimitedMessage, delimitedMessage.length - 1);
+            String s = new String(b);
+            int i = Integer.parseInt(s);
+            db.unlock(0, i);
         } else if (delimitedMessage.length == 2) {
-
+            byte[] b = Arrays.copyOf(delimitedMessage, delimitedMessage.length - 1);
+            String s = new String(b);
+            int i = Integer.parseInt(s);
+            if (i == 1) db.take(0);
         }
         for (byte b : delimitedMessage) System.out.print((char) b);
         System.out.println();
