@@ -29,7 +29,7 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/MainApp.fxml"));
         primaryStage.setTitle("Scooter Sharing System");
-        primaryStage.setScene(new Scene(root, 800, 200));
+        primaryStage.setScene(new Scene(root, 720, 180));
         primaryStage.show();
     }
 }

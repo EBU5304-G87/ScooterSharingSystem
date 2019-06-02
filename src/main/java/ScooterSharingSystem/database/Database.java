@@ -1,29 +1,21 @@
 package ScooterSharingSystem.database;
 
 import ScooterSharingSystem.models.Record;
-import ScooterSharingSystem.models.SchoolUser;
 import ScooterSharingSystem.models.Station;
 import ScooterSharingSystem.models.User;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import org.hildan.fxgson.FxGson;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.file.Files;
 import java.util.*;
 
 public class Database {
-    public SchoolUser[] schoolUsers;
-    public List<Station> stations;
-    public List<User> users;
-    public List<Record> records;
-    public ObservableList<User> userData;
-    public ObservableList<Record> recordData;
-    private Gson gsonIn;
+    public Station station;
+    private List<User> users;
+    private List<Record> records;
     private Gson fxGsonIn;
     private Gson fxGsonOut;
 
@@ -31,13 +23,9 @@ public class Database {
         public static final Database INSTANCE = new Database();
     }
     protected Database() {
-        gsonIn = new Gson();
         fxGsonIn = FxGson.create();
         fxGsonOut = FxGson.coreBuilder().setPrettyPrinting().create();
-        userData = FXCollections.observableArrayList();
-        recordData = FXCollections.observableArrayList();
         try {
-            readSchoolUsers();
             readStations();
             readUsers();
             readRecords();
@@ -56,7 +44,7 @@ public class Database {
     }
 
     private void writeStations() {
-        writeFile("Stations", fxGsonOut.toJson(stations));
+        writeFile("Stations", fxGsonOut.toJson(station));
     }
     private void writeUsers() {
         writeFile("Users", fxGsonOut.toJson(users));
@@ -65,19 +53,13 @@ public class Database {
         writeFile("Records", fxGsonOut.toJson(records));
     }
     private void readStations() throws IOException {
-        stations = fxGsonIn.fromJson(readFile("Stations"), new TypeToken<ArrayList<Station>>(){}.getType());
+        station = fxGsonIn.fromJson(readFile("Stations"), Station.class);
     }
     private void readUsers() throws IOException {
         users = fxGsonIn.fromJson(readFile("Users"), new TypeToken<ArrayList<User>>(){}.getType());
     }
     private void readRecords() throws IOException {
         records = fxGsonIn.fromJson(readFile("Records"), new TypeToken<ArrayList<Record>>(){}.getType());
-    }
-
-    private void readSchoolUsers() throws IOException {
-        ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(classLoader.getResource("SchoolUsers.json").getFile());
-        schoolUsers = gsonIn.fromJson(new String(Files.readAllBytes(file.toPath())), SchoolUser[].class);
     }
 
     private void writeFile(String filename, String content) {
@@ -103,7 +85,7 @@ public class Database {
                 cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR);
     }
 
-    public List<Record> getUserRecord(int id) {
+    private List<Record> getUserRecord(int id) {
         List<Record> list = new ArrayList<>();
         for (Record r : records)
             if (r.getId() == id) list.add(r);
@@ -122,8 +104,7 @@ public class Database {
         return totalTime > 120;
     }
 
-    public void unlock(int i, int id) {
-        Station station = stations.get(i);
+    public void unlock(int id) {
         for (User user : users) {
             if (user.getId() == id) {
                 if (!user.isViolation()) {
@@ -140,11 +121,10 @@ public class Database {
                 return;
             }
         }
-        stations.get(i).setLCD("Invalid id");
+        station.setLCD("Invalid id");
     }
 
-    public void take(int i) {
-        Station station = stations.get(i);
+    public void take() {
         if (station.unlocked != -1) {
             if (station.slots[station.unlocked].slot.get()) {
                 // take the scooter

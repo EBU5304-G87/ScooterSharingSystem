@@ -19,7 +19,10 @@ public class Station {
     public int unlocked = -1;
     public transient Timer timer;
     public transient User curUser;
-    private SerialPort comPort = SerialPort.getCommPort("/dev/tty.SLAB_USBtoUART");
+    private transient SerialPort comPort = SerialPort.getCommPort("/dev/tty.SLAB_USBtoUART");
+    private transient byte[] lights = {0b01111111, (byte) 0b10111111, (byte) 0b11011111,
+            (byte) 0b11101111, (byte) 0b11110111, (byte) 0b11111011,
+            (byte) 0b11111101, (byte) 0b11111110};
 
     Station() {
         ReceiveListener receive = new ReceiveListener();
@@ -42,13 +45,11 @@ public class Station {
      */
     public boolean borrowScooter() {
         int i = 0;
-        byte[] lights = {0b01111111, (byte) 0b10111111, (byte) 0b11011111, (byte) 0b11101111, (byte) 0b11110111,
-                (byte) 0b11111011, (byte) 0b11111101, (byte) 0b11111110};
         for (Slot slot : slots) {
             if ((slot.slot).get() && (slot.lock).get()) {
                 // byte[] send = {lights[i], (byte)'.'};
                 // comPort.writeBytes(send, 2);
-                LCD.set("Slot " + (i + 1) + " unlocked");
+                setLCD("Slot " + (i + 1) + " unlocked");
                 slot.lock.set(false);
                 slot.light.set(true);
                 timeDelay(slot);
@@ -69,6 +70,8 @@ public class Station {
         int i = 0;
         for (Slot slot:slots) {
             if (!slot.slot.get() && (slot.lock).get()) {
+                // byte[] send = {lights[i], (byte)'.'};
+                // comPort.writeBytes(send, 2);
                 setLCD("Slot " + (i + 1) + " unlocked");
                 slot.lock.set(false);
                 slot.light.set(true);

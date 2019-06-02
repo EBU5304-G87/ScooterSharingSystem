@@ -12,7 +12,7 @@ import java.util.Arrays;
  * @author Group 87
  */
 public final class ReceiveListener implements SerialPortMessageListener {
-    Database db;
+    private Database db;
 
     public ReceiveListener() {
         db = Database.getInstance();
@@ -34,12 +34,12 @@ public final class ReceiveListener implements SerialPortMessageListener {
             byte[] b = Arrays.copyOf(delimitedMessage, delimitedMessage.length - 1);
             String s = new String(b);
             int i = Integer.parseInt(s);
-            db.unlock(0, i);
+            db.unlock(i);
         } else if (delimitedMessage.length == 2) {
             byte[] b = Arrays.copyOf(delimitedMessage, delimitedMessage.length - 1);
             String s = new String(b);
             int i = Integer.parseInt(s);
-            if (i == 1) db.take(0);
+            if (i == 1) db.take();
         }
         for (byte b : delimitedMessage) System.out.print((char) b);
         System.out.println();

@@ -16,11 +16,11 @@ import java.util.List;
 public class MainController {
     private Database db;
     @FXML
-    private List<List<List<RadioButton>>> radios;
+    private List<List<RadioButton>> a;
     @FXML
-    private Label aLCD, bLCD, cLCD;
+    private Label aLCD;
     @FXML
-    private List<TextField> inputs;
+    private TextField input;
 
     /**
      * Initialize the interface.
@@ -28,50 +28,22 @@ public class MainController {
     @FXML
     public void initialize() {
         db = Database.getInstance();
-        for (int i = 0; i != 3; i++)
-            for (int j = 0; j != 3; j++)
-                for (int k = 0; k != 8; k++)
-                    radios.get(i).get(j).get(k).selectedProperty()
-                            .bindBidirectional(db.stations.get(i).slots[k].getValue(j));
-
-        aLCD.textProperty().bindBidirectional(db.stations.get(0).LCD);
-        bLCD.textProperty().bindBidirectional(db.stations.get(1).LCD);
-        cLCD.textProperty().bindBidirectional(db.stations.get(2).LCD);
+        for (int j = 0; j != 3; j++)
+            for (int k = 0; k != 8; k++)
+                a.get(j).get(k).selectedProperty()
+                        .bindBidirectional(db.station.slots[k].getValue(j));
+        aLCD.textProperty().bindBidirectional(db.station.LCD);
     }
 
     /**
      * Unlock
      */
     @FXML
-    private void unlockOne() {
+    private void unlock() {
         try {
-            db.unlock(0, Integer.parseInt(inputs.get(0).getText()));
+            db.unlock(Integer.parseInt(input.getText()));
         } catch (NumberFormatException e) {
-            db.stations.get(0).setLCD("Invalid ID");
-        }
-    }
-
-    /**
-     * Unlock
-     */
-    @FXML
-    private void unlockTwo() {
-        try {
-            db.unlock(1, Integer.parseInt(inputs.get(1).getText()));
-        } catch (NumberFormatException e) {
-            db.stations.get(1).setLCD("Invalid ID");
-        }
-    }
-
-    /**
-     * Unlock
-     */
-    @FXML
-    private void unlockThree() {
-        try {
-            db.unlock(2, Integer.parseInt(inputs.get(2).getText()));
-        } catch (NumberFormatException e) {
-            db.stations.get(2).setLCD("Invalid ID");
+            db.station.setLCD("Invalid ID");
         }
     }
 
@@ -79,17 +51,5 @@ public class MainController {
      * Is scooter be taken
      */
     @FXML
-    private void takeOne() { db.take(0); }
-
-    /**
-     * Is scooter be taken
-     */
-    @FXML
-    private void takeTwo() { db.take(1); }
-
-    /**
-     * Is scooter be taken
-     */
-    @FXML
-    private void takeThree() { db.take(2); }
+    private void take() { db.take(); }
 }
