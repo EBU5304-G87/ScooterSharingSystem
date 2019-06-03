@@ -35,13 +35,11 @@ public final class ReceiveListener implements SerialPortMessageListener {
             byte[] b = Arrays.copyOf(delimitedMessage, delimitedMessage.length - 1);
             String s = new String(b);
             int i = Integer.parseInt(s);
-            System.out.println(i);
             db.unlock(i);
         } else if (delimitedMessage.length == 2) {
             byte[] b = Arrays.copyOf(delimitedMessage, delimitedMessage.length - 1);
             String s = new String(b);
             int i = Integer.parseInt(s);
-            System.out.println(i);
             if (i == 1) db.take();
         }
     }

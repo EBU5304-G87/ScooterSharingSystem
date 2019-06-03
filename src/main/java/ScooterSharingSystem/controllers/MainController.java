@@ -31,7 +31,7 @@ public class MainController {
         aLCD.textProperty().bindBidirectional(db.station.LCD);
         db.station.prompt();
     }
-
+    
     /**
      * Unlock
      */

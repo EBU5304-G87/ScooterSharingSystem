@@ -21,7 +21,7 @@ public class Station {
     public StringProperty LCD;
     public int unlocked = -1;
     public transient User curUser;
-    private transient SerialPort comPort;
+    public transient SerialPort comPort;
     public transient ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
     public transient ScheduledFuture<?> future;
 

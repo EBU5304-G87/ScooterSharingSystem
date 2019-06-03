@@ -1,5 +1,6 @@
 package ScooterSharingSystem;
 
+import ScooterSharingSystem.database.Database;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -31,5 +32,13 @@ public class MainApp extends Application {
         primaryStage.setTitle("Scooter Sharing System");
         primaryStage.setScene(new Scene(root, 720, 180));
         primaryStage.show();
+    }
+
+    @Override
+    public void stop(){
+        Database db = Database.getInstance();
+        db.save();
+        db.station.executor.shutdown();
+        db.station.comPort.closePort();
     }
 }
