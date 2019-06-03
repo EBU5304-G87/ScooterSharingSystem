@@ -10,6 +10,7 @@ import static org.junit.Assert.*;
 public class WriteListenerTest {
     @Test
     public void test() {
+        System.out.println(System.getProperty("os.name"));
         SerialPort comPort = SerialPort.getCommPort("/dev/tty.SLAB_USBtoUART");
         ReceiveListener receive = new ReceiveListener();
         comPort.openPort();

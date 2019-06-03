@@ -1,14 +1,12 @@
 package ScooterSharingSystem.models;
 
 import ScooterSharingSystem.database.Database;
+import ScooterSharingSystem.helpers.OSCheck;
 import ScooterSharingSystem.listeners.ReceiveListener;
 import com.fazecast.jSerialComm.SerialPort;
 import javafx.application.Platform;
 import javafx.beans.property.StringProperty;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
@@ -28,13 +26,12 @@ public class Station {
     public transient ScheduledFuture<?> future;
 
     Station() {
-        ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(classLoader.getResource("port").getFile());
-        try {
-            String port = new String(Files.readAllBytes(file.toPath()));
-            comPort = SerialPort.getCommPort(port);
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (OSCheck.isMac()){
+            comPort = SerialPort.getCommPort("/dev/tty.SLAB_USBtoUART");
+        } else if (OSCheck.isWindows()) {
+            comPort = SerialPort.getCommPort("COM3");
+        } else if (OSCheck.isUnix()) {
+            comPort = SerialPort.getCommPort("/dev/ttyS2");
         }
         ReceiveListener receive = new ReceiveListener();
         comPort.openPort();

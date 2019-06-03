@@ -12,14 +12,6 @@ import static org.junit.Assert.*;
  * @author Group 87
  */
 public class DatabaseTest {
-    /**
-     * To test add information.
-     */
-    @Test
-    public void singletonTest() {
-        Database db = Database.getInstance();
-        assertEquals("igaryhe@gmail.com", db.schoolUsers[0].getEmail());
-    }
 
     /**
      * To test is same day method(Successful)
