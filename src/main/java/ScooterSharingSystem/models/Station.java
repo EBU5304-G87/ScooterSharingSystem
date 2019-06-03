@@ -39,6 +39,22 @@ public class Station {
         comPort.writeBytes(send.getBytes(), send.length());
     }
 
+    public void setFailedLCD(String s) {
+        setLCD(s);
+        byte[] failed = {0x00, '.'};
+        comPort.writeBytes(failed, 2);
+    }
+
+    private void unlock(int i) {
+        Slot slot = slots[i];
+        setLCD("Slot " + (i + 1) + " unlocked");
+        byte[] send = {lights[i], (byte)'.'};
+        comPort.writeBytes(send, 2);
+        slot.lock.set(false);
+        slot.light.set(true);
+        timeDelay(slot);
+        unlocked = i;
+    }
     /**
      * To check is scooter borrowed or not
      * @return is borrowed or not
@@ -47,18 +63,12 @@ public class Station {
         int i = 0;
         for (Slot slot : slots) {
             if ((slot.slot).get() && (slot.lock).get()) {
-                // byte[] send = {lights[i], (byte)'.'};
-                // comPort.writeBytes(send, 2);
-                setLCD("Slot " + (i + 1) + " unlocked");
-                slot.lock.set(false);
-                slot.light.set(true);
-                timeDelay(slot);
-                unlocked = i;
+                unlock(i);
                 return true;
             }
             i++;
         }
-        setLCD("No scooter available");
+        setFailedLCD("No scooter available");
         return false;
     }
 
@@ -70,18 +80,12 @@ public class Station {
         int i = 0;
         for (Slot slot:slots) {
             if (!slot.slot.get() && (slot.lock).get()) {
-                // byte[] send = {lights[i], (byte)'.'};
-                // comPort.writeBytes(send, 2);
-                setLCD("Slot " + (i + 1) + " unlocked");
-                slot.lock.set(false);
-                slot.light.set(true);
-                timeDelay(slot);
-                unlocked = i;
+                unlock(i);
                 return true;
             }
             i++;
         }
-        setLCD("No slot available");
+        setFailedLCD("No slot available");
         return false;
     }
 

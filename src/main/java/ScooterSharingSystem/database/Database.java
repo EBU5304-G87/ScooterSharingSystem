@@ -26,7 +26,7 @@ public class Database {
         fxGsonIn = FxGson.create();
         fxGsonOut = FxGson.coreBuilder().setPrettyPrinting().create();
         try {
-            readStations();
+            readStation();
             readUsers();
             readRecords();
         } catch (IOException e) {
@@ -38,13 +38,13 @@ public class Database {
     }
 
     public void save() {
-        writeStations();
+        writeStation();
         writeRecords();
         writeUsers();
     }
 
-    private void writeStations() {
-        writeFile("Stations", fxGsonOut.toJson(station));
+    private void writeStation() {
+        writeFile("Station", fxGsonOut.toJson(station));
     }
     private void writeUsers() {
         writeFile("Users", fxGsonOut.toJson(users));
@@ -52,8 +52,8 @@ public class Database {
     private void writeRecords() {
         writeFile("Records", fxGsonOut.toJson(records));
     }
-    private void readStations() throws IOException {
-        station = fxGsonIn.fromJson(readFile("Stations"), Station.class);
+    private void readStation() throws IOException {
+        station = fxGsonIn.fromJson(readFile("Station"), Station.class);
     }
     private void readUsers() throws IOException {
         users = fxGsonIn.fromJson(readFile("Users"), new TypeToken<ArrayList<User>>(){}.getType());
@@ -116,12 +116,12 @@ public class Database {
                             station.curUser = user;
                     }
                 } else {
-                    station.setLCD("You need to pay the fine");
+                    station.setFailedLCD("You need to pay the fine");
                 }
                 return;
             }
         }
-        station.setLCD("Invalid id");
+        station.setFailedLCD("Invalid id");
     }
 
     public void take() {
