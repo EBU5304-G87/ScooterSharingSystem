@@ -41,6 +41,6 @@
       "light": false
     }
   ],
-  "LCD": "Please input your ID*",
+  "LCD": "Locked",
   "unlocked": -1
 }

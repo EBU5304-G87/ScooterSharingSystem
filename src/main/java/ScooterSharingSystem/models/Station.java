@@ -7,6 +7,7 @@ import javafx.application.Platform;
 import javafx.beans.property.StringProperty;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -19,7 +20,8 @@ public class Station {
     public int unlocked = -1;
     public transient User curUser;
     private transient SerialPort comPort = SerialPort.getCommPort("/dev/tty.SLAB_USBtoUART");
-    public transient ScheduledExecutorService executor = Executors.newScheduledThreadPool(4);
+    public transient ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+    public transient ScheduledFuture<?> future;
 
     Station() {
         ReceiveListener receive = new ReceiveListener();
@@ -74,14 +76,13 @@ public class Station {
         slot.lock.set(false);
         slot.light.set(true);
         Database db = Database.getInstance();
-        executor.schedule(() -> {
+        future = executor.schedule(() -> {
             slot.lock.set(true);
             slot.light.set(false);
             setLCD("Locked");
             unlocked = -1;
             db.save();
-            executor.shutdown();
-        }, 61, TimeUnit.SECONDS);
+        }, 62, TimeUnit.SECONDS);
         unlocked = i;
     }
 
