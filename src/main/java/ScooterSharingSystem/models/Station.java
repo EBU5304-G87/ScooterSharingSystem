@@ -5,9 +5,9 @@ import ScooterSharingSystem.listeners.ReceiveListener;
 import com.fazecast.jSerialComm.SerialPort;
 import javafx.application.Platform;
 import javafx.beans.property.StringProperty;
-
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 /**
  * This class is mainly about control of station.
@@ -17,46 +17,77 @@ public class Station {
     public Slot[] slots;
     public StringProperty LCD;
     public int unlocked = -1;
-    public transient Timer timer;
     public transient User curUser;
     private transient SerialPort comPort = SerialPort.getCommPort("/dev/tty.SLAB_USBtoUART");
-    private transient byte[] lights = {0b01111111, (byte) 0b10111111, (byte) 0b11011111,
-            (byte) 0b11101111, (byte) 0b11110111, (byte) 0b11111011,
-            (byte) 0b11111101, (byte) 0b11111110};
+    public transient ScheduledExecutorService executor = Executors.newScheduledThreadPool(4);
 
     Station() {
         ReceiveListener receive = new ReceiveListener();
         comPort.openPort();
         comPort.addDataListener(receive);
     }
+
     /**
      * Set LED
+     *
      * @param LCD the LED would be set
      */
     public void setLCD(String LCD) {
-        this.LCD.set(LCD);
-        String send = LCD + '.';
+        Platform.runLater(() -> this.LCD.set(LCD));
+        String send = LCD + '*';
         comPort.writeBytes(send.getBytes(), send.length());
+    }
+
+    public void prompt() {
+        String LCD = "Please input your ID";
+        String s = LCD + '*';
+        Platform.runLater(() -> this.LCD.set(s));
+        comPort.writeBytes(s.getBytes(), s.length());
     }
 
     public void setFailedLCD(String s) {
         setLCD(s);
-        byte[] failed = {0x00, '.'};
+        byte[] failed = {0x00, '*'};
         comPort.writeBytes(failed, 2);
     }
 
+    public void sleep(int millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void unlock(int i) {
+        byte[] lights = {0x7F, (byte) 0xBF, (byte) 0xDF, (byte) 0xEF,
+                (byte) 0xF7, (byte) 0xFB, (byte) 0xFD, (byte) 0xFE};
         Slot slot = slots[i];
+
         setLCD("Slot " + (i + 1) + " unlocked");
-        byte[] send = {lights[i], (byte)'.'};
-        comPort.writeBytes(send, 2);
+        try {
+            Thread.sleep(50);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        comPort.writeBytes(new byte[] {lights[i], '*'}, 2);
         slot.lock.set(false);
         slot.light.set(true);
-        timeDelay(slot);
+        Database db = Database.getInstance();
+        executor.schedule(() -> {
+            slot.lock.set(true);
+            slot.light.set(false);
+            setLCD("Locked");
+            unlocked = -1;
+            db.save();
+            executor.shutdown();
+        }, 61, TimeUnit.SECONDS);
         unlocked = i;
     }
+
     /**
      * To check is scooter borrowed or not
+     *
      * @return is borrowed or not
      */
     public boolean borrowScooter() {
@@ -74,11 +105,12 @@ public class Station {
 
     /**
      * To check is slot is available.
+     *
      * @return is available or not
      */
     public boolean returnScooter() {
         int i = 0;
-        for (Slot slot:slots) {
+        for (Slot slot : slots) {
             if (!slot.slot.get() && (slot.lock).get()) {
                 unlock(i);
                 return true;
@@ -87,25 +119,5 @@ public class Station {
         }
         setFailedLCD("No slot available");
         return false;
-    }
-
-    /**
-     * This function is about time delay
-     * @param slot slot would be operated
-     */
-    private void timeDelay(Slot slot) {
-        Database db = Database.getInstance();
-        timer = new Timer();
-        timer.schedule(new TimerTask() {
-            public void run() {
-                slot.lock.set(true);
-                slot.light.set(false);
-                Platform.runLater(() -> setLCD("Locked"));
-                unlocked = -1;
-                db.save();
-                timer.cancel();
-                timer.purge();
-                }
-        }, 6000);
     }
 }

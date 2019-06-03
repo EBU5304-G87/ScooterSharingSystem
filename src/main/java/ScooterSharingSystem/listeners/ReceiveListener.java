@@ -30,18 +30,19 @@ public final class ReceiveListener implements SerialPortMessageListener {
     @Override
     public void serialEvent(SerialPortEvent event) {
         byte[] delimitedMessage = event.getReceivedData();
+        db = Database.getInstance();
         if (delimitedMessage.length == 10) {
             byte[] b = Arrays.copyOf(delimitedMessage, delimitedMessage.length - 1);
             String s = new String(b);
             int i = Integer.parseInt(s);
+            System.out.println(i);
             db.unlock(i);
         } else if (delimitedMessage.length == 2) {
             byte[] b = Arrays.copyOf(delimitedMessage, delimitedMessage.length - 1);
             String s = new String(b);
             int i = Integer.parseInt(s);
+            System.out.println(i);
             if (i == 1) db.take();
         }
-        for (byte b : delimitedMessage) System.out.print((char) b);
-        System.out.println();
     }
 }

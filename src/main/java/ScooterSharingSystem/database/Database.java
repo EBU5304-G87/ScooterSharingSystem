@@ -141,7 +141,7 @@ public class Database {
                     station.curUser.setViolation(true);
                 station.curUser.setBorrowed(false);
             }
-            station.timer.cancel();
+            station.executor.shutdown();
             station.slots[station.unlocked].light.set(false);
             station.slots[station.unlocked].lock.set(true);
             station.setLCD("Locked");

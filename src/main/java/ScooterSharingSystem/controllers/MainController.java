@@ -1,12 +1,8 @@
 package ScooterSharingSystem.controllers;
 
 import ScooterSharingSystem.database.Database;
-import ScooterSharingSystem.models.Record;
-import ScooterSharingSystem.models.Station;
-import ScooterSharingSystem.models.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -33,6 +29,7 @@ public class MainController {
                 a.get(j).get(k).selectedProperty()
                         .bindBidirectional(db.station.slots[k].getValue(j));
         aLCD.textProperty().bindBidirectional(db.station.LCD);
+        db.station.prompt();
     }
 
     /**
@@ -43,7 +40,7 @@ public class MainController {
         try {
             db.unlock(Integer.parseInt(input.getText()));
         } catch (NumberFormatException e) {
-            db.station.setLCD("Invalid ID");
+            db.station.setFailedLCD("Invalid ID");
         }
     }
 
